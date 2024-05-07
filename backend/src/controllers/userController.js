@@ -1,9 +1,18 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
+const { generateToken } = require("./tokenController");
 
 //create a new user
 exports.createUser = async (req, res) => {
   try {
+    const { role } = await req.user;
+
+    if (role !== "admin")
+      return res
+        .status(401)
+        .json({ message: "You are not allowed to perform this action" });
+
+    //only admin can add new user
     const user = await req.body;
 
     if (!user)
@@ -24,6 +33,37 @@ exports.createUser = async (req, res) => {
     res.status(500).json({
       error: error.errmsg,
     });
+  }
+};
+
+//getting all users
+exports.getAllUsers = async (req, res) => {
+  const { role } = await req.user;
+
+  if (role !== "admin")
+    return res
+      .status(401)
+      .json({ message: "You are not allowed to perform this action" });
+
+  try {
+    const users = await User.find();
+    if (users.length === 0)
+      return res.status(404).json({ message: "No users found" });
+
+    //return all users if they exist
+
+    //hide user passwords
+    users.forEach((user) => {
+      user.userPassword = undefined;
+    });
+
+    //send other user details
+    res.status(200).json({
+      message: "success",
+      users,
+    });
+  } catch (error) {
+    res.json({ error });
   }
 };
 
@@ -59,10 +99,25 @@ exports.loginUser = async (req, res) => {
       });
 
     //generate token for the user if password is correct
-    //token to be added
+
+    const userDetails = {
+      username: user.userName,
+      role: user.role,
+      id: user._id,
+    };
+
+    const token = generateToken(userDetails);
+
+    if (!token)
+      return res.status(500).json({ message: "Unable to generate token" });
+
+    //if token send token
     res.status(200).json({
-      user,
+      message: "success",
+      token,
     });
+
+    //catch error if any
   } catch (error) {
     res.status(500).json({
       error: error.errmsg,
@@ -72,9 +127,15 @@ exports.loginUser = async (req, res) => {
 
 //update user profile
 exports.updateUser = async (req, res) => {
-  const userId = req.params.userId;
+  // const { role } = await req.user;
 
-  console.log(req.body);
+  // if (role !== "admin")
+  //   return res
+  //     .status(401)
+  //     .json({ message: "You are not allowed to perform this action" });
+
+  //get user id from the params
+  const userId = req.params.userId;
 
   try {
     const user = await User.findByIdAndUpdate(userId, req.body);
@@ -82,10 +143,8 @@ exports.updateUser = async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
 
     res.status(200).json({
-      message: "User updated successfully",
-      user,
+      message: "User updated successfully"
     });
-
   } catch (error) {
     res.status(500).json({
       error: error.errmsg,
@@ -95,6 +154,14 @@ exports.updateUser = async (req, res) => {
 
 //delete user
 exports.deleteUser = async (req, res) => {
+  const { role } = await req.user;
+
+  if (role !== "admin")
+    return res
+      .status(401)
+      .json({ message: "You are not allowed to perform this action" });
+
+  //Admin can delete the user
   const userId = req.params.userId;
 
   try {
