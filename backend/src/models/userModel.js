@@ -37,6 +37,12 @@ const userSchema = new Schema(
       enum: ["user", "admin"],
       default: "user",
     },
+    status: {
+      type: String,
+      trim: true,
+      enum: ["present", "absent"],
+      default: "absent",
+    },
   },
   {
     versionKey: false,
