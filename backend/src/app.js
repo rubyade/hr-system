@@ -1,13 +1,13 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const userRouter = require("./src/routes/userRoute");
-const config = require("./src/utils/config");
-const workTimeRouter = require("./src/routes/workTimeRoute");
-const leaveTimeRouter = require("./src/routes/leaveTimeRoute");
+const userRouter = require("./routes/userRoute");
+const config = require("./utils/config");
+const workTimeRouter = require("./routes/workTimeRoute");
+const leaveTimeRouter = require("./routes/leaveTimeRoute");
 const swaggerUi = require("swagger-ui-express");
-const swaggerDocument = require("./swagger.json");
-const router404 = require("./src/routes/404Route");
+const swaggerDocument = require("../swagger.json");
+const router404 = require("./routes/404Route");
 
 const app = express();
 
