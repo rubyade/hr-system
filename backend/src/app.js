@@ -4,6 +4,9 @@ const mongoose = require("mongoose");
 const userRouter = require("./routes/userRoute");
 const config = require("./utils/config");
 const workTimeRouter = require("./routes/workTimeRoute");
+const leaveTimeRouter = require("./routes/leaveTimeRoute");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("../swagger.json");
 
 const app = express();
 
@@ -19,9 +22,14 @@ mongoose
 
 app.use(express.json());
 
+//documentation
+app.use("/api/api-docs", swaggerUi.serve);
+app.get("/api/api-docs", swaggerUi.setup(swaggerDocument));
+
 //user routes
 app.use("/api", userRouter);
 app.use("/api", workTimeRouter);
+app.use("/api", leaveTimeRouter);
 
 const port = config.port;
 

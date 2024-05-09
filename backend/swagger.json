@@ -1,0 +1,250 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Hr-system",
+    "description": "Hr management system for group A",
+    "version": "1.0.0"
+  },
+
+  "host": "localhost:3001",
+  "basePath": "/api",
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/users": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Get all users",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized access"
+          },
+          "404": {
+            "description": "No users found"
+          }
+        }
+      }
+    },
+    "/tours/{id}": {
+      "get": {
+        "tags": ["Tours"],
+        "summary": "Get a tour by id",
+        "description": "Get a tour by id",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Tour id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tour retrieved successfully"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Tours"],
+        "summary": "Edit a tour",
+        "description": "Edit the tour",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Enter the Id for the tour to be edited",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Enter the updated tour data. Ensure that all fields are filled with the right data types.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Tour"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Tour updated successfully"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Tours"],
+        "summary": "Delete a tour",
+        "description": "Delete a tour by id",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Tour id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tour deleted successfully"
+          },
+          "404": {
+            "description": "Unable to delete tour"
+          }
+        }
+      }
+    },
+    "/upload": {
+      "post": {
+        "tags": ["Images"],
+        "summary": "Post a new image",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Data needed to create a tour",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "File uploaded successfully"
+          },
+          "405": {
+            "description": "Error occured. Image not uploaded"
+          }
+        }
+      }
+    },
+    "/images": {
+      "get": {
+        "tags": ["Images"],
+        "summary": "Get all images",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "500": {
+            "description": "Failed to fetch images"
+          }
+        }
+      }
+    },
+    "/images/image?id={id}": {
+      "get": {
+        "tags": ["Images"],
+        "summary": "Get one image",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Enter the public_id of the image",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "404": {
+            "description": "Image not found"
+          }
+        }
+      }
+    },
+    "/images/delete?id={id}": {
+      "delete": {
+        "tags": ["Images"],
+        "summary": "Delete image",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Enter the public_id of the image",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "404": {
+            "description": "Image not found"
+          }
+        }
+      }
+    },
+    "/tours/create": {
+      "post": {
+        "tags": ["Tours"],
+        "summary": "Post a new tour",
+        "description": "Create a new tour",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Data needed to create a tour",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Tour"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Tour created successfully"
+          },
+          "401": {
+            "description": "Error in creating new tour"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Tour": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "durations": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
