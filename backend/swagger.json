@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Hr-system",
-    "description": "Hr management system for group A",
+    "description": "HR Management System for Group A",
     "version": "1.0.0"
   },
 
@@ -11,6 +11,19 @@
   "schemes": ["http", "https"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
+  "securityDefinitions": {
+    "AuthToken": {
+      "type": "apiKey",
+      "name": "authorization",
+      "in": "header",
+      "description": "The token for authentication"
+    }
+  },
+  "security": [
+    {
+      "AuthToken": []
+    }
+  ],
   "paths": {
     "/users": {
       "get": {
@@ -25,224 +38,406 @@
           "401": {
             "description": "Unauthorized access"
           },
+          "403": {
+            "description": "Forbidden access"
+          },
           "404": {
             "description": "No users found"
-          }
-        }
-      }
-    },
-    "/tours/{id}": {
-      "get": {
-        "tags": ["Tours"],
-        "summary": "Get a tour by id",
-        "description": "Get a tour by id",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Tour id",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Tour retrieved successfully"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "patch": {
-        "tags": ["Tours"],
-        "summary": "Edit a tour",
-        "description": "Edit the tour",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Enter the Id for the tour to be edited",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Enter the updated tour data. Ensure that all fields are filled with the right data types.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Tour"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Tour updated successfully"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Tours"],
-        "summary": "Delete a tour",
-        "description": "Delete a tour by id",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Tour id",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Tour deleted successfully"
-          },
-          "404": {
-            "description": "Unable to delete tour"
-          }
-        }
-      }
-    },
-    "/upload": {
-      "post": {
-        "tags": ["Images"],
-        "summary": "Post a new image",
-        "consumes": ["multipart/form-data"],
-        "parameters": [
-          {
-            "name": "image",
-            "in": "formData",
-            "description": "Data needed to create a tour",
-            "required": true,
-            "type": "file"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "File uploaded successfully"
-          },
-          "405": {
-            "description": "Error occured. Image not uploaded"
-          }
-        }
-      }
-    },
-    "/images": {
-      "get": {
-        "tags": ["Images"],
-        "summary": "Get all images",
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "Successful"
           },
           "500": {
-            "description": "Failed to fetch images"
+            "description": "Server error"
           }
         }
       }
     },
-    "/images/image?id={id}": {
-      "get": {
-        "tags": ["Images"],
-        "summary": "Get one image",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Enter the public_id of the image",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful"
-          },
-          "404": {
-            "description": "Image not found"
-          }
-        }
-      }
-    },
-    "/images/delete?id={id}": {
-      "delete": {
-        "tags": ["Images"],
-        "summary": "Delete image",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Enter the public_id of the image",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful"
-          },
-          "404": {
-            "description": "Image not found"
-          }
-        }
-      }
-    },
-    "/tours/create": {
+
+    "/auth/user/login": {
       "post": {
-        "tags": ["Tours"],
-        "summary": "Post a new tour",
-        "description": "Create a new tour",
+        "tags": ["Users"],
+        "description": "User login",
         "consumes": ["application/json"],
         "produces": ["application/json"],
         "parameters": [
           {
             "name": "body",
             "in": "body",
-            "description": "Data needed to create a tour",
+            "description": "Data needed to create a new user",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Tour"
+              "type": "object",
+              "properties": {
+                "userName": {
+                  "type": "string"
+                },
+                "userPassword": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "No matching user found"
+          },
+          "500": {
+            "description": "Server error / invalid token"
+          }
+        }
+      }
+    },
+    "/create/user": {
+      "post": {
+        "tags": ["Users"],
+        "description": "Create a new user",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Data needed to create a new user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
             }
           }
         ],
         "responses": {
           "201": {
-            "description": "Tour created successfully"
+            "description": "User created successfully"
           },
           "401": {
-            "description": "Error in creating new tour"
+            "description": "Unauthorized access"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "404": {
+            "description": "No users found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/update/user/{userId}": {
+      "patch": {
+        "tags": ["Users"],
+        "description": "Update user information",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Enter the userId for the user to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Enter the updated user data. Ensure that all fields are filled with the right data types.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User updated successfully"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "404": {
+            "description": "No user found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/delete/user/{userId}": {
+      "delete": {
+        "tags": ["Users"],
+        "description": "Delete user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Enter the userId for the user to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized access"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "404": {
+            "description": "No user found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/user/checkin": {
+      "post": {
+        "tags": ["Attendance"],
+        "description": "Checkin to record start work time",
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Succefully checked in"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/user/checkout/{id}": {
+      "patch": {
+        "tags": ["Attendance"],
+        "description": "Checkout after work time",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Succefully checked out"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/admin/worktime": {
+      "get": {
+        "tags": ["Attendance"],
+        "description": "Check users' work records. Only for use by admins",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Un authorized access"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/admin/worktime/report": {
+      "get": {
+        "tags": ["Attendance"],
+        "description": "Reports on work records. Only for use by admins",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Un authorized access"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+
+    "/leave/request": {
+      "post": {
+        "tags": ["Leave Management"],
+        "description": "Submit leave request",
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Leave request successful"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+
+    "/leave/records": {
+      "get": {
+        "tags": ["Leave Management"],
+        "description": "Viewer own leave records",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "404": {
+            "description": "No records found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/leave/request/{id}": {
+      "delete": {
+        "tags": ["Leave Management"],
+        "description": "Delete leave request. Only users can delete their leave records.",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Leave request id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "404": {
+            "description": "No records found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/leave/admin/records": {
+      "get": {
+        "tags": ["Leave Management"],
+        "description": "View all leave management records. Only for admins",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Un authorized access"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "404": {
+            "description": "No records found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/leave/admin/update/{id}": {
+      "patch": {
+        "tags": ["Leave Management"],
+        "description": "Take action on the user leave request. Only for admins",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Leave request id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden access"
+          },
+          "404": {
+            "description": "No records found"
+          },
+          "500": {
+            "description": "Server error"
           }
         }
       }
     }
   },
   "definitions": {
-    "Tour": {
+    "User": {
       "type": "object",
       "properties": {
-        "name": {
+        "userName": {
           "type": "string"
         },
-        "durations": {
-          "type": "integer"
-        },
-        "description": {
+        "userEmail": {
           "type": "string"
+        },
+        "userPassword": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["present", "absent"]
+        }
+      }
+    },
+    "Leave Management": {
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["approved", "rejected"]
         }
       }
     }

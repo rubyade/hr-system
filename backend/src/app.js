@@ -7,6 +7,7 @@ const workTimeRouter = require("./routes/workTimeRoute");
 const leaveTimeRouter = require("./routes/leaveTimeRoute");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("../swagger.json");
+const router404 = require("./routes/404Route");
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.get("/api/api-docs", swaggerUi.setup(swaggerDocument));
 app.use("/api", userRouter);
 app.use("/api", workTimeRouter);
 app.use("/api", leaveTimeRouter);
+app.use(router404);
 
 const port = config.port;
 
