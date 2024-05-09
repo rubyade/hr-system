@@ -7,7 +7,7 @@ import List from './List';
 function LandingPage() {
   return (
     <div>
-      <div className='p-8 lg:p-14 flex flex-col md:flex-row justify-between pt-9 xl:gap-16'>
+      <div className='p-8 lg:p-14 flex flex-col md:flex-row justify-between pt-24 md:pt-36 lg:pt-48  xl:pt-52 xl:gap-16'>
         <div className='flex flex-col md:pr-2 lg:w-7/12 lg:pl-14 lg:mt-7'>
           <h4 className='font-bold font-quicksand text-xs text-white uppercase xl:text-sm '>
             automate and hire
@@ -24,7 +24,7 @@ function LandingPage() {
             single system and by integrating these functions.
           </p>
           <div className='pt-2 pb-9 flex flex-row mt-4 md:pt-4'>
-            <div className='md:pr-10 pr-32'>
+            <div className='md:pr-10 pr-9 md:static'>
               <Button label='Register' />
             </div>
             <div className='xl:ml-36'>
@@ -43,7 +43,7 @@ function LandingPage() {
 
       <hr class='h-px bg-gray-200 border-0 dark:bg-gray-700'></hr>
 
-      <div className=''>
+      <div className='shadow-md'>
         <List />
       </div>
     </div>
