@@ -5,12 +5,13 @@ exports.checkIn = async (req, res) => {
   try {
     const { id } = await req.user;
 
-    await WorkTime.create({ userId: id });
+    const checkin = await WorkTime.create({ userId: id });
 
     await User.findByIdAndUpdate(id, { status: "present" }, { new: true });
 
     res.status(201).json({
       message: "Succefully checked in",
+      id: checkin._id,
     });
   } catch (error) {
     res.status(500).json({
@@ -177,6 +178,8 @@ exports.generateAttendanceReports = async (req, res) => {
     // Generate and return attendance reports
     res.status(200).json({ attendanceData });
   } catch (error) {
-    throw new Error("Error generating attendance reports: " + error.message);
+    res.status(500).json({
+      error: "Server error",
+    });
   }
 };

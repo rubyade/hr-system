@@ -37,13 +37,25 @@ const userSchema = new Schema(
       enum: ["user", "admin"],
       default: "user",
     },
+
     status: {
       type: String,
       trim: true,
       enum: ["present", "absent"],
       default: "absent",
     },
+
+    leaveBalance: {
+      type: Number,
+      default: 15,
+    },
+
+    usedLeaveDays: {
+      type: Number,
+      default: 0,
+    },
   },
+
   {
     versionKey: false,
   }
