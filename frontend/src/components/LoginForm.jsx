@@ -57,6 +57,7 @@ function LoginForm() {
 
   return (
     <div className='flex flex-col md:flex-row items-center justify-between mt-24'>
+      {/* image */}
       <div>
         <Image
           src={img}
