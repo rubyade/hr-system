@@ -23,7 +23,7 @@ mongoose
 
 app.use(express.json());
 
-//documentation
+//documentation for the api
 app.use("/api/api-docs", swaggerUi.serve);
 app.get("/api/api-docs", swaggerUi.setup(swaggerDocument));
 
