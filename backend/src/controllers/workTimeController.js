@@ -36,7 +36,7 @@ exports.checkOut = async (req, res) => {
       }
     );
 
-    await User.findByIdAndUpdate(id, { status: "absent" });
+    await User.findByIdAndUpdate(id, { status: "absent" }, { new: true });
 
     res.status(200).json({
       message: "Succefully checked out",

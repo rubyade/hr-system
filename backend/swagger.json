@@ -6,7 +6,7 @@
     "version": "1.0.0"
   },
 
-  "host": "localhost:3001",
+  "host": "tungabe.onrender.com",
   "basePath": "/api",
   "schemes": ["http", "https"],
   "consumes": ["application/json"],
@@ -419,10 +419,6 @@
         },
         "userPassword": {
           "type": "string"
-        },
-        "status": {
-          "type": "string",
-          "enum": ["present", "absent"]
         }
       }
     },
