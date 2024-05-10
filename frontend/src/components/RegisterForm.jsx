@@ -90,6 +90,7 @@ function RegisterForm() {
   return (
     <div className='absolute'>
       <div className='flex flex-col md:flex-row items-center justify-between mt-12'>
+        {/* image */}
         <div>
           <Image
             src={registerimg}
