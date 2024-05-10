@@ -17,7 +17,7 @@ function Navbar() {
 
   return (
     <div className='w-full fixed top-0 left-0'>
-      <nav class='md:px-10 py-4 px-7 md:flex justify-between items-center font-teachers  bg-gradient-to-r from-red-300 to-purple-500'>
+      <nav className='md:px-10 py-4 px-7 md:flex justify-between items-center font-teachers  bg-gradient-to-r from-red-300 to-purple-500'>
         {/* Logo Here!! */}
         <div className='flex text-2xl cursor-pointer items-center gap-2'>
           <FontAwesomeIcon
@@ -69,12 +69,14 @@ function Navbar() {
           <li className='font-semibold my-7 md:my-0 md:ml-8'>
             <Link href={'/contact'}>Contact</Link>
           </li>
-          <div className='py-1 md:static md:ml-8 pb-4'>
-            <Button label='Get Started' />
+          <div className='py-1 md:static md:ml-8'>
+            <Link href={'/login'}>
+              <Button label='Get Started' />
+            </Link>
           </div>
         </ul>
       </nav>
-      <hr class='h-px md:mb-10 bg-gray-200 border-0 dark:bg-gray-700'></hr>
+      <hr className='h-px md:mb-10 bg-gray-200 border-0 dark:bg-gray-700'></hr>
     </div>
   );
 }
