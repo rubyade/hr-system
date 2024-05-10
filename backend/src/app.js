@@ -6,7 +6,7 @@ const config = require("./utils/config");
 const workTimeRouter = require("./routes/workTimeRoute");
 const leaveTimeRouter = require("./routes/leaveTimeRoute");
 const swaggerUi = require("swagger-ui-express");
-const swaggerDocument = require("./swagger.json");
+const swaggerDocument = require("../swagger.json");
 const router404 = require("./routes/404Route");
 
 const app = express();
@@ -38,4 +38,3 @@ const port = config.port;
 app.listen(port, () => {
   console.log("listening on port " + port);
 });
-

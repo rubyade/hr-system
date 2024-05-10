@@ -4,8 +4,8 @@
   "description": "Group A HR-SYSTEM backend, developed with NodeJs and MongoDB",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js",
-    "start": "node app.js",
+    "dev": "nodemon ./src/app.js",
+    "start": "node ./src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
