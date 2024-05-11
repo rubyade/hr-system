@@ -1,0 +1,22 @@
+name: Sync Changes to TungaBE
+
+on:
+  push:
+    branches:
+      - backend
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: backend
+
+      - name: Push changes to TungaBE
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: backend
+          repository: mwebaze-nicho/TungaBE
