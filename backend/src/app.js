@@ -11,6 +11,7 @@ const router404 = require("./routes/404Route");
 
 const app = express();
 
+//testing actions
 //connect to database
 mongoose.set("strictQuery", false);
 
