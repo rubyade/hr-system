@@ -388,7 +388,22 @@
             "in": "path",
             "required": true,
             "type": "string"
-          }
+          },
+          {"name": "body",
+          "in": "body",
+          "description": "Leave update",
+          "required": true,
+          "schema": {
+            "type":"object",
+            "properties": {
+              "startDate": {
+                "type":"string"
+              },
+              "endDate": {
+                "type":"string"
+              }
+            }
+          }}
         ],
         "responses": {
           "200": {
