@@ -41,13 +41,20 @@ exports.getLeaveRequests = async (req, res) => {
       const totalDays =
         (record.endDate - record.startDate) / (1000 * 60 * 60 * 24);
 
-      userLeaveRecords.push({
-        id: record._id,
-        startDate,
-        endDate,
-        totalDays,
-        status: record.status,
-      });
+      if (endDate && startDate !== "Invalid Date") {
+        userLeaveRecords.push({
+          id: record._id,
+          startDate,
+          endDate,
+          totalDays,
+          status: record.status,
+        });
+      } else {
+        userLeaveRecords.push({
+          id: record._id,
+          status: record.status,
+        });
+      }
     }
 
     res.status(200).json({
@@ -106,20 +113,36 @@ exports.getAllLeaveRecords = async (req, res) => {
     const formattedLeaveRecords = [];
 
     for (const record of leaveRecords) {
-      record.userId = undefined;
+      let username;
+      
+      try {
+        const user = await User.findById(record.userId);
+        username = user.userName;
+      } catch (error) {
+        return null;
+      }
 
       const endDate = new Date(record.endDate).toLocaleDateString();
       const startDate = new Date(record.startDate).toLocaleDateString();
       const totalDays =
         (record.endDate - record.startDate) / (1000 * 60 * 60 * 24);
 
-      formattedLeaveRecords.push({
-        id: record._id,
-        startDate,
-        endDate,
-        totalDays,
-        status: record.status,
-      });
+      if (endDate && startDate !== "Invalid Date") {
+        formattedLeaveRecords.push({
+          id: record._id,
+          userName: username,
+          startDate,
+          endDate,
+          totalDays,
+          status: record.status,
+        });
+      } else {
+        formattedLeaveRecords.push({
+          id: record._id,
+          userName: username,
+          status: record.status,
+        });
+      }
     }
 
     res.status(200).json({

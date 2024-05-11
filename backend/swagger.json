@@ -6,7 +6,7 @@
     "version": "1.0.0"
   },
 
-  "host": "localhost:3001",
+  "host": "tungabe.onrender.com",
   "basePath": "/api",
   "schemes": ["http", "https"],
   "consumes": ["application/json"],
@@ -388,7 +388,22 @@
             "in": "path",
             "required": true,
             "type": "string"
-          }
+          },
+          {"name": "body",
+          "in": "body",
+          "description": "Leave update",
+          "required": true,
+          "schema": {
+            "type":"object",
+            "properties": {
+              "startDate": {
+                "type":"string"
+              },
+              "endDate": {
+                "type":"string"
+              }
+            }
+          }}
         ],
         "responses": {
           "200": {
@@ -419,10 +434,6 @@
         },
         "userPassword": {
           "type": "string"
-        },
-        "status": {
-          "type": "string",
-          "enum": ["present", "absent"]
         }
       }
     },
