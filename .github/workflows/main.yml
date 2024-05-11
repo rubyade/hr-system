@@ -12,22 +12,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
+          repository: mwebaze-nicho/hr-system
           ref: backend
 
-        - name: Use Node.js 14
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-
-      - name: Create backend directory
-        run: mkdir -p backend
-
-      - name: Move files to backend directory
-        run: mv * backend
+      - name: Copy changes to TungaBE backend folder
+        run: |
+          cp -r * /path/to/TungaBE/backend/
+          cp -r .github /path/to/TungaBE/backend/
 
       - name: Push changes to TungaBE
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: backend
-          repository: mwebaze-nicho/TungaBE
+        run: |
+          git remote add upstream https://github.com/mwebaze-nicho/TungaBE.git
+          git push upstream backend
