@@ -10,17 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: mwebaze-nicho/hr-system
           ref: backend
 
       - name: Copy changes to TungaBE backend folder
         run: |
-          cp -r * /path/to/TungaBE/backend/
-          cp -r .github /path/to/TungaBE/backend/
+          cp -r * https://github.com/mwebaze-nicho/TungaBE/backend/
+          cp -r .github https://github.com/mwebaze-nicho/TungaBE/backend/
 
-      - name: Push changes to TungaBE
-        run: |
-          git remote add upstream https://github.com/mwebaze-nicho/TungaBE.git
-          git push upstream backend
