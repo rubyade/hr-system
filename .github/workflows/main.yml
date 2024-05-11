@@ -14,6 +14,17 @@ jobs:
         with:
           ref: backend
 
+        - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Create backend directory
+        run: mkdir -p backend
+
+      - name: Move files to backend directory
+        run: mv * backend
+
       - name: Push changes to TungaBE
         uses: ad-m/github-push-action@master
         with:
