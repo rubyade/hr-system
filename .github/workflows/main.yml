@@ -12,7 +12,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: backend
+          ref: backend  # Specify the branch to checkout
+
+      - name: Create backend directory
+        run: mkdir -p backend
+
+      - name: Move files to backend directory
+        run: mv * backend
 
       - name: Push changes to TungaBE
         uses: ad-m/github-push-action@master
