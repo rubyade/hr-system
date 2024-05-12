@@ -1,10 +1,4 @@
-require("dotenv").config();
-
-const DB = process.env.MONGO_URI;
-
-const port = process.env.PORT || 3001;
-
-const corsOptions = (req, res, next) => {
+exports.corsOptions = (req, res, next) => {
   const originUrl =
     process.env.NODE_ENV === "production"
       ? process.env.CORS_ORIGIN
@@ -24,4 +18,10 @@ const corsOptions = (req, res, next) => {
   }
 };
 
-module.exports = { DB, port, corsOptions };
+const DB = process.env.MONGO_URI;
+
+const port = process.env.PORT || 3001;
+
+module.exports = { DB, port };
+
+
