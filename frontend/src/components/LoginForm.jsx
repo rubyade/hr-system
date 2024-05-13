@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import img from "../../public/krakenimages-376KN_ISplE-unsplash.jpg";
 import Image from "next/image";
-import axiosInstance from "../config/axiosConfig";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 function LoginForm() {
   const [userDetails, setuserDetails] = useState({
@@ -33,14 +34,30 @@ function LoginForm() {
 
     if (!userName || !userPassword) {
       seterror("All fields are necessary");
-
       return null;
     }
 
-    const res = await axiosInstance.get();
-    console.log(res);
+    try {
+      const res = await axios.post(
+        "https://tungabe.onrender.com/api/auth/user/login",
+        userDetails
+      );
 
-    // e.preventDefault();
+      //set token
+      localStorage.setItem("token", res.data.token);
+
+      //redirect to home
+      router.push("/");
+      
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Unable to authenticate user.",
+        showConfirmButton: false,
+        timer: 2000,
+        position: "top",
+      });
+    }
   };
 
   return (
