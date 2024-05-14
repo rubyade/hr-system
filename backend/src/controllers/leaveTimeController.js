@@ -113,11 +113,13 @@ exports.getAllLeaveRecords = async (req, res) => {
     const formattedLeaveRecords = [];
 
     for (const record of leaveRecords) {
-      let username;
-      
+      let username = "N/A";
+
       try {
         const user = await User.findById(record.userId);
-        username = user.userName;
+        if (user) {
+          username = user.userName;
+        }
       } catch (error) {
         return null;
       }

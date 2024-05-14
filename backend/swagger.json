@@ -389,21 +389,15 @@
             "required": true,
             "type": "string"
           },
-          {"name": "body",
-          "in": "body",
-          "description": "Leave update",
-          "required": true,
-          "schema": {
-            "type":"object",
-            "properties": {
-              "startDate": {
-                "type":"string"
-              },
-              "endDate": {
-                "type":"string"
-              }
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Leave update",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LeaveManagement"
             }
-          }}
+          }
         ],
         "responses": {
           "200": {
@@ -437,16 +431,19 @@
         }
       }
     },
-    "Leave Management": {
+    "LeaveManagement": {
       "type": "object",
       "properties": {
+        "userId": {
+          "type": "string"
+        },
         "startDate": {
           "type": "string"
         },
         "endDate": {
           "type": "string"
         },
-        "status": {
+        "leaveStatus": {
           "type": "string",
           "enum": ["approved", "rejected"]
         }
