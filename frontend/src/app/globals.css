@@ -153,3 +153,7 @@ body {
     width: 12.2%;
   }
 }
+=======
+.navLink {
+  @apply font-semibold my-7 md:my-0 md:ml-8
+}
