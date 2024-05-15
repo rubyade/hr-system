@@ -3,7 +3,7 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/Navbar';
+import { AppProvider } from '../components/context';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,10 +15,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body className='bg-gradient-to-r from-red-300 to-purple-500'>
-        <Navbar />
-        {children}
-      </body>
+      <AppProvider>
+        <body className='bg-gradient-to-r from-red-300 to-purple-500'>
+          {children}
+        </body>
+      </AppProvider>
     </html>
   );
 }
