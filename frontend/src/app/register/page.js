@@ -1,12 +1,12 @@
-import RegisterForm from "@/components/RegisterForm";
+import RegisterForm from '@/components/RegisterForm';
 
 export const metadata = {
-  title: "Register",
+  title: 'Register',
 };
 
 function Register() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
       <RegisterForm />
     </main>
   );

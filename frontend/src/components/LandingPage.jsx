@@ -6,7 +6,7 @@ import List from './List';
 
 function LandingPage() {
   return (
-    <div>
+    <div className='bg-gradient-to-r from-red-300 to-purple-500'>
       <div className='p-8 lg:p-14 flex flex-col md:flex-row justify-between pt-24 md:pt-36 lg:pt-48  xl:pt-52 xl:gap-16'>
         <div className='flex flex-col md:pr-2 lg:w-7/12 lg:pl-14 lg:mt-7'>
           <h4 className='font-bold font-quicksand text-xs text-white uppercase xl:text-sm '>
