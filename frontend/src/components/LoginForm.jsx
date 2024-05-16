@@ -6,15 +6,23 @@ import img from "../../public/krakenimages-376KN_ISplE-unsplash.jpg";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import axiosInstance from "../config/axiosConfig";
-
+import { userInfo } from "@/controllers/userAuth/userAuth";
+import userToken from "@/controllers/userAuth/userToken";
 function LoginForm() {
+  //check if the user is already logged in
+  const router = useRouter();
+  const { isAuthenticated } = userToken();
+
+  if (isAuthenticated) {
+    router.push("/");
+  }
+
+  //login if not logged in
   const [userDetails, setuserDetails] = useState({
     userName: "",
     userPassword: "",
   });
   const [error, seterror] = useState("");
-
-  const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,6 +50,13 @@ function LoginForm() {
 
       //set token
       localStorage.setItem("token", res.data.token);
+
+      // check user role
+      const { role } = userInfo();
+
+      if (role === "admin") {
+        router.push("/admin/dashboard");
+      }
 
       //redirect to home
       router.push("/");
