@@ -9,6 +9,24 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        scale: {
+          0: '0',
+          25: '.25',
+          50: '.5',
+          75: '.75',
+          90: '.9',
+          95: '.95',
+        },
+        bounce: {
+          '0%': 'scale - 50',
+          '50%': 'scale - 75',
+          '100%': 'scale - 50',
+        },
+      },
+      animation: {
+        bounce: 'bounce 2s ease-in-out infinite',
+      },
       colors: {
         mycolour: 'rgba(255,255,255,.25)',
       },
