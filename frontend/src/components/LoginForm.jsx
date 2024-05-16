@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import img from "../../public/krakenimages-376KN_ISplE-unsplash.jpg";
 import Image from "next/image";
-import axios from "axios";
 import Swal from "sweetalert2";
+import axiosInstance from "../config/axiosConfig";
 
 function LoginForm() {
   const [userDetails, setuserDetails] = useState({
@@ -38,17 +38,13 @@ function LoginForm() {
     }
 
     try {
-      const res = await axios.post(
-        "https://tungabe.onrender.com/api/auth/user/login",
-        userDetails
-      );
+      const res = await axiosInstance.post("/auth/user/login", userDetails);
 
       //set token
       localStorage.setItem("token", res.data.token);
 
       //redirect to home
       router.push("/");
-      
     } catch (error) {
       Swal.fire({
         icon: "error",
