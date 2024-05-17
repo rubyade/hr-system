@@ -9,7 +9,7 @@ function Sidebar() {
   const { isSidebarOpen, closeSidebar, openSidebar } = useGlobalContext();
   return (
     <aside
-      className={`fixed grid left-0 w-full h-full gap-y-3 bg-white top-0 pt-4 grid-rows-[auto_1fr_auto] transition duration-300 ease-in-out all md:w-60 ${
+      className={`fixed grid left-0 w-full justify-center h-full gap-y-3 bg-white top-0 pt-4 grid-rows-[auto_1fr_auto] transition duration-300 ease-in-out all ${
         isSidebarOpen ? 'sidebar show-sidebar' : 'sidebar'
       }`}
     >
@@ -31,7 +31,7 @@ function Sidebar() {
             <li key={id} className='links'>
               <a
                 href={url}
-                className='flex items-center text-lg capitalize px-5 pb-8 text-gray-700 tracking-wide gap-4 hover:bg-slate-400 hover:text-gray-800 transition duration-300 ease-in-out all'
+                className='flex gap-8 items-center text-lg capitalize px-5 pb-8 text-gray-700 tracking-wide hover:bg-slate-400 hover:text-gray-800 transition duration-300 ease-in-out all'
               >
                 {icon}
                 {text}
@@ -40,7 +40,7 @@ function Sidebar() {
           );
         })}
       </ul>
-      <ul className='social-links flex justify-center pb-6 gap-1'>
+      <ul className='social-links gap-6 flex justify-center pb-6'>
         {social.map((link) => {
           const { id, url, icon } = link;
           return (

@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -45,16 +44,26 @@ body {
 /* Sidebar */
 
 .sidebar {
+  z-index: 1;
+  overflow-x: hidden;
   /* toggle logic */
   transform: translateX(-100%);
 }
 .show-sidebar {
   transform: translateX(0);
 }
-.show-sidebar {
-  transform: translateX(0);
+/* .sidebar .show-sidebar + main {
+  margin-left: 15rem;
+} */
+.card,
+.meeting,
+.line {
+  border: 1px solid rgba(219, 219, 219);
 }
 
+#line {
+  border: 1px solid rgba(219, 219, 219);
+}
 .links a svg {
   font-size: 1.5rem;
   color: #64748b;
@@ -64,92 +73,85 @@ body {
 .links a:hover svg {
   color: #475569;
 }
-.month {
-  padding: 15px 25px;
-  width: 80%;
-  background: #1abc9c;
-  text-align: center;
+.react-calendar {
+  height: 22rem;
+  width: 23rem;
+  padding: 1rem;
+  padding-top: 3rem;
+  border: 1px solid rgba(219, 219, 219);
 }
 
-.month ul {
-  margin: 0;
-  padding: 0;
+/* About Page */
+
+.container {
+  /* border: 2px solid red; */
+  width: 90vw;
+  max-width: var(--fixed-width);
+  margin: 5rem 0;
+  background: var(--white);
+  border-radius: var(--borderRadius);
+  padding: 1.5rem 2rem;
+  box-shadow: var(--shadow-1);
+}
+.container h3 {
+  margin-bottom: 2rem;
+}
+.person {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+.person img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-3);
+}
+.person h4 {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.person p {
+  color: var(--grey-500);
 }
 
-.month ul li {
+/* Leave form */
+.form {
+  width: 90vw;
+  max-width: 600px;
+  background: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 2rem 2.5rem;
+  margin: 3rem auto;
+}
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+.btn {
+  cursor: pointer;
   color: white;
-  font-size: 20px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-}
-
-.month .prev {
-  float: left;
-  padding-top: 10px;
-}
-
-.month .next {
-  float: right;
-  padding-top: 10px;
-}
-
-.weekdays {
-  width: 80%;
-  margin: 0;
-  background-color: #ddd;
-}
-
-.weekdays li {
+  background: #d946ef;
+  border: transparent;
+  border-radius: 0.25rem;
+  letter-spacing: 1px;
+  padding: 0.375rem 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: 0.3s ease-in-out all;
+  text-transform: capitalize;
   display: inline-block;
-  width: 13.6%;
-  color: #666;
-  text-align: center;
-}
-
-.days {
-  width: 80%;
-  padding: 0px 0;
-  background: #eee;
-  margin: 0;
-}
-
-.days li {
-  list-style-type: none;
-  display: inline-block;
-  width: 13.6%;
-  text-align: center;
-  margin-bottom: 5px;
-  font-size: 12px;
-  color: #777;
-}
-
-.days li .active {
-  padding: 5px;
-  background: #1abc9c;
-  color: white !important;
-}
-
-/* Add media queries for smaller screens */
-@media screen and (max-width: 720px) {
-  .weekdays li,
-  .days li {
-    width: 13.1%;
-  }
-}
-
-@media screen and (max-width: 420px) {
-  .weekdays li,
-  .days li {
-    width: 12.5%;
-  }
-  .days li .active {
-    padding: 2px;
-  }
-}
-
-@media screen and (max-width: 290px) {
-  .weekdays li,
-  .days li {
-    width: 12.2%;
-  }
 }

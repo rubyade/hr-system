@@ -8,8 +8,8 @@ import AdminHome from './AdminHome';
 function AdminDashboard() {
   return (
     <div>
-      <AdminHome />
       <Sidebar />
+      <AdminHome />
     </div>
   );
 }
