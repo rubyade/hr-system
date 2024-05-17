@@ -7,9 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faBusinessTime } from "@fortawesome/free-solid-svg-icons";
+import useToken from "@/controllers/userAuth/userToken";
 
 function Navbar() {
   const [clicked, setClicked] = useState(false);
+  const { isAuthenticated } = useToken();
 
   const handleClick = () => {
     setClicked(!clicked);
@@ -57,26 +59,42 @@ function Navbar() {
             clicked ? "top-12" : "top-[-490px]"
           }`}
         >
-          <li className="navLink">
-            <Link href={"/"}>Home</Link>
-          </li>
-          <li className="navLink">
-            <Link href={"/about"}>About</Link>
-          </li>
-          <li className="navLink">
-            <Link href={"/pricing"}>Pricing</Link>
-          </li>
-          <li className="navLink">
-            <Link href={"/contact"}>Contact</Link>
-          </li>
-          <div className="py-1 md:static md:ml-8">
-            <Link href={"/login"}>
-              <Button label="Get Started" />
-            </Link>
-          </div>
+          {!isAuthenticated && (
+            <>
+              {" "}
+              <li className="navLink">
+                <Link href={"/"}>Home</Link>
+              </li>
+              <li className="navLink">
+                <Link href={"/about"}>About</Link>
+              </li>
+              <li className="navLink">
+                <Link href={"/contact"}>Contact</Link>
+              </li>
+              <Link href={"/login"} className="py-1 md:static md:ml-8" passHref>
+                <Button label="Get Started" />
+              </Link>
+            </>
+          )}
+
+          {isAuthenticated && (
+            <>
+              <li className="navLink">
+                <Link href={"/work"}>Work</Link>
+              </li>
+              <li className="navLink">
+                <Link href={"/Leave"}>Leave</Link>
+              </li>
+              <li className="navLink">
+                <Link href={"/user"}>Account</Link>
+              </li>
+              <li href={""} className="py-1 md:static md:ml-8" passHref>
+                <Button label="Logout" action="logout" />
+              </li>
+            </>
+          )}
         </ul>
       </nav>
-      {/* <hr className="h-px md:mb-10 bg-gray-200 border-0 dark:bg-gray-700"></hr> */}
     </div>
   );
 }
