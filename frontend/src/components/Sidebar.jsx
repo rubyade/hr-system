@@ -3,7 +3,7 @@
 import React from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { useGlobalContext } from './context';
-import { social, links } from '@/datasidebar';
+import { social, links } from '@/controllers/datasidebar';
 
 function Sidebar() {
   const { isSidebarOpen, closeSidebar, openSidebar } = useGlobalContext();
