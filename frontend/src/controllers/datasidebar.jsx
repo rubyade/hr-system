@@ -48,13 +48,13 @@ export const links = [
   {
     id: 6,
     url: '/documents',
-    text: 'All Departments',
+    text: 'Departments',
     icon: <FaDashcube />,
   },
   {
     id: 7,
     url: '/documents',
-    text: 'All Employees',
+    text: 'Employees',
     icon: <FaWpforms />,
   },
   {

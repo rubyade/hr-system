@@ -18,7 +18,7 @@ const data = {
 
 const LineChart = () => {
   return (
-    <div className=' h-80 w-5/6 mb-4 bg-white rounded shadow-lg mr-4'>
+    <div className='mb-4 w-72 h-48 md:ml-16 md:w-3/6 md:h-72 md:p-4 bg-white rounded shadow-md md:mr-6'>
       <Line data={data} />
     </div>
   );
