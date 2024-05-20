@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaUserFriends, FaFireAlt } from 'react-icons/fa';
+import { FaUserFriends, FaGripHorizontal } from 'react-icons/fa';
 
 const card = (props) => {
   const heading = props.heading;
@@ -17,13 +17,13 @@ const card = (props) => {
       </div>
       <div className='flex justify-between'>
         <h1 className='font-bold font-quicksand text-3xl'>{total}</h1>
-        {/* <div className='flex justify-center w-14 h-7 gap-1 items-center bg-teal-100 shadow-md'>
+        <div className='flex justify-center w-14 h-7 gap-1 items-center bg-teal-100 shadow-md'>
           <button className=' text-teal-500 text-xs bg-teal-300'></button>
-          <FaFireAlt />
+          <FaGripHorizontal />
           <h6 className='text-xs font-quicksand font-semibold text-green-300'>
             {percent}
           </h6>
-        </div> */}
+        </div>
       </div>
       <h6 className='font-quicksand font-thin text-xs capitalize mt-4'>
         Update: {currDate}

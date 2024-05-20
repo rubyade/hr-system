@@ -51,30 +51,10 @@ const AdminHome = () => {
         </div>
         <div className='flex flex-col md:flex-row items-center justify-center gap-2 md:justify-end mt-7'>
           <div className='flex flex-col md:flex-row md:flex-wrap justify-end gap-1 '>
-            <Card
-              date='update:Feb 16 2024'
-              heading='Total Applicants'
-              total='560'
-              percent='12'
-            />
-            <Card
-              date='update:Jan 12 2024'
-              heading='Total Employees'
-              total='300'
-              percent='18'
-            />
-            <Card
-              date='update:May 12 2024'
-              heading='Total Attendance'
-              total='1560'
-              percent='12'
-            />
-            <Card
-              date='update:Mar 6 2024'
-              heading='Total Projects'
-              total='260'
-              percent='12'
-            />
+            <Card heading='Total Applicants' total='560' percent='12%' />
+            <Card heading='Total Employees' total='300' percent='18%' />
+            <Card heading='Total Attendance' total='1560' percent='25%' />
+            <Card heading='Total Projects' total='260' percent='76%' />
           </div>
           <div className=' w-72 md:w-64 lg:w-96 h-96 md:mr-2 mt-4 rounded'>
             <Calendar />

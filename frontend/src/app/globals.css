@@ -155,7 +155,6 @@ body {
   text-transform: capitalize;
   display: inline-block;
 }
-=======
-.navLink {
-  @apply font-semibold my-7 md:my-0 md:ml-8
+======= .navLink {
+  @apply font-semibold my-7 md:my-0 md:ml-8;
 }

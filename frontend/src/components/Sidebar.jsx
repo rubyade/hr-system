@@ -40,7 +40,7 @@ function Sidebar() {
           );
         })}
       </ul>
-      <ul className='social-links gap-6 flex justify-center pb-6'>
+      <ul className='social-links gap-6 flex justify-center pb-6 gap-1'>
         {social.map((link) => {
           const { id, url, icon } = link;
           return (
