@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import img from "../../public/krakenimages-376KN_ISplE-unsplash.jpg";
 import Image from "next/image";
@@ -13,9 +13,17 @@ function LoginForm() {
   const router = useRouter();
   const { isAuthenticated } = userToken();
 
-  if (isAuthenticated) {
-    router.push("/");
-  }
+  useEffect(() => {
+    if (isAuthenticated) {
+      const { role } = userInfo();
+
+      if (role === "admin") {
+        router.push("/admin/dashboard");
+        return;
+      }
+      router.push("/");
+    }
+  }, [isAuthenticated]);
 
   //login if not logged in
   const [userDetails, setuserDetails] = useState({
@@ -56,10 +64,12 @@ function LoginForm() {
 
       if (role === "admin") {
         router.push("/admin/dashboard");
+      } else {
+        router.push("/");
       }
-
       //redirect to home
-      router.push("/");
+
+      window.location.reload();
     } catch (error) {
       Swal.fire({
         icon: "error",

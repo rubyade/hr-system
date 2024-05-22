@@ -4,6 +4,7 @@ config.autoAddCss = false;
 import "./globals.css";
 import { AppProvider } from "../components/context";
 import Navbar from "@/components/Navbar";
+import { SwrProviders } from "./providers";
 
 export const metadata = {
   title: "HR-SYSTEM",
@@ -15,7 +16,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-gradient-to-r from-red-300 to-purple-500">
         <Navbar />
-        <AppProvider>{children}</AppProvider>
+        <SwrProviders>
+          <AppProvider>{children}</AppProvider>
+        </SwrProviders>
       </body>
     </html>
   );

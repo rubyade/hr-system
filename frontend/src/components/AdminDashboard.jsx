@@ -1,23 +1,41 @@
-'use client';
-import Sidebar from './Sidebar';
-import AdminHome from './AdminHome';
-import { userInfo } from '@/controllers/userAuth/userAuth';
-import { useRouter } from 'next/navigation';
+"use client";
+import Sidebar from "./Sidebar";
+import AdminHome from "./AdminHome";
+import { userInfo } from "@/controllers/userAuth/userAuth";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 function AdminDashboard() {
   const router = useRouter();
-  if (typeof localStorage !== 'undefined') {
-    const { role } = userInfo();
 
-    if (!role) {
-      router.push('/login');
-    }
+  useEffect(() => {
+    if (typeof localStorage !== "undefined") {
+      const token = localStorage.getItem("token");
 
-    if (role !== 'admin') {
-      router.push('/');
+      if (!token) {
+        router.push("/login");
+        return;
+      }
+
+      const { role } = userInfo();
+
+      if (!role) {
+        router.push("/login");
+        return;
+      }
+
+      if (role !== "admin") {
+        router.push("/");
+        return;
+      }
+
+      router.refresh();
     }
-  }
+  }, [router]);
+
   return (
     <div>
+      <Sidebar />
       <AdminHome />
     </div>
   );
