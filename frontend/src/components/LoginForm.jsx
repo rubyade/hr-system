@@ -56,8 +56,8 @@ function LoginForm() {
 
       if (role === "admin") {
         router.push("/admin/dashboard");
+        return;
       }
-
       //redirect to home
       router.push("/");
     } catch (error) {

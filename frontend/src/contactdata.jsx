@@ -10,10 +10,10 @@ export default [
   },
   {
     id: 2,
-    name: 'Nicholai',
+    name: 'Mwebaze Nicholas',
     skill: 'BackEnd Developer (Uganda)',
     github: 'https://github.com/mwebaze-nicho',
-    email: 'nickmwebaze@gmail.com',
+    email: 'mwebazenicholas6@gmail.com',
     image: 'https://avatars.githubusercontent.com/u/128962789?v=4',
   },
   {
