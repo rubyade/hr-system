@@ -3,16 +3,15 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 function Button(props) {
-  const label = props.label;
-  const action = props.action;
+  const { label, action } = props;
   const router = useRouter();
 
   const handleLogout = () => {
     if (action === "logout") {
       localStorage.removeItem("token");
-      router.refresh();
+      window.location.reload();
+      router.push("/");
     }
-    router.push("/");
   };
 
   return (

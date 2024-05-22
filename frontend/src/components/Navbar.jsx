@@ -83,7 +83,7 @@ function Navbar() {
                 <Link href={"/work"}>Work</Link>
               </li>
               <li className="navLink">
-                <Link href={"/Leave"}>Leave</Link>
+                <Link href={"/leave"}>Leave</Link>
               </li>
               <li className="navLink">
                 <Link href={"/user"}>Account</Link>

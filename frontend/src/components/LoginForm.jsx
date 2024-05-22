@@ -55,10 +55,12 @@ function LoginForm() {
       const { role } = userInfo();
 
       if (role === "admin") {
+        window.location.reload();
         router.push("/admin/dashboard");
         return;
       }
       //redirect to home
+      window.location.reload();
       router.push("/");
     } catch (error) {
       Swal.fire({
