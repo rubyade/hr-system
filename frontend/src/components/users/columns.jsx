@@ -1,11 +1,36 @@
-// export const data = [
-//   { id: 1, name: 'john', email },
-//   { id: 2, name: 'peter' },
-//   { id: 3, name: 'susan' },
-//   { id: 4, name: 'anna' },
-// ];
+import { EditIcon, DeleteIcon, EyeIcon } from '../icons';
+import { User, Chip, Tooltip } from '@nextui-org/react';
 
-export const data = [
+const statusColorMap = {
+  approved: 'success',
+  pending: 'danger',
+  vacation: 'warning',
+};
+
+export const columns = [
+  {
+    key: 'name',
+    label: 'NAME',
+  },
+  {
+    key: 'department',
+    label: 'DEPARTMENT',
+  },
+  {
+    key: 'role',
+    label: 'ROLE',
+  },
+  {
+    key: 'status',
+    label: 'STATUS',
+  },
+  {
+    key: 'actions',
+    label: 'ACTIONS',
+  },
+];
+
+export const users = [
   {
     id: '1',
     name: 'Tony Reichert',
@@ -97,3 +122,62 @@ export const data = [
     avatar: 'https://i.pravatar.cc/150?u=a092581d4ef9026700d',
   },
 ];
+
+export const renderCell = (user, columnKey) => {
+  const cellValue = user[columnKey];
+
+  switch (columnKey) {
+    case 'name':
+      return (
+        <User
+          avatarProps={{ radius: 'lg', src: user.avatar }}
+          description={user.email}
+          name={cellValue}
+        >
+          {user.email}
+        </User>
+      );
+    case 'role':
+      return (
+        <div className='flex flex-col'>
+          <p className='text-bold text-sm capitalize'>{cellValue}</p>
+          <p className='text-bold text-sm capitalize text-default-400'>
+            {user.department}
+          </p>
+        </div>
+      );
+    case 'status':
+      return (
+        <Chip
+          className='capitalize'
+          color={statusColorMap[user.status]}
+          size='sm'
+          variant='flat'
+        >
+          {cellValue}
+        </Chip>
+      );
+    case 'actions':
+      return (
+        <div className='relative flex items-center gap-2'>
+          <Tooltip content='Details'>
+            <span className='text-lg text-default-400 cursor-pointer active:opacity-50'>
+              <EyeIcon />
+            </span>
+          </Tooltip>
+          <Tooltip content='Edit user'>
+            <span className='text-lg text-default-400 cursor-pointer active:opacity-50'>
+              <EditIcon />
+            </span>
+          </Tooltip>
+          <Tooltip color='danger' content='Delete user'>
+            <span className='text-lg text-danger cursor-pointer active:opacity-50'>
+              <DeleteIcon />
+            </span>
+          </Tooltip>
+        </div>
+      );
+    default:
+      return cellValue;
+  }
+};
