@@ -1,8 +1,12 @@
 'use client';
 import { useState } from 'react';
 import { data } from '../leavedata';
+
 const Leave = () => {
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [role, setRole] = useState('');
+  const [department, setDepartment] = useState('');
   const [users, setUsers] = useState(data);
 
   const handleSubmit = (e) => {
@@ -20,6 +24,9 @@ const Leave = () => {
     setUsers(updatedUsers);
     // set back to empty
     setName('');
+    setEmail('');
+    setRole('');
+    setDepartment('');
   };
 
   const removeUser = (id) => {
@@ -48,6 +55,42 @@ const Leave = () => {
             id='name'
           />
         </div>
+        <div className='form-row'>
+          <label htmlFor='email' className='form-label'>
+            Email
+          </label>
+          <input
+            type='text'
+            className='form-input'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            id='email'
+          />
+        </div>
+        <div className='form-row'>
+          <label htmlFor='role' className='form-label'>
+            Role
+          </label>
+          <input
+            type='text'
+            className='form-input'
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            id='role'
+          />
+        </div>
+        <div className='form-row'>
+          <label htmlFor='department' className='form-label'>
+            Department
+          </label>
+          <input
+            type='text'
+            className='form-input'
+            value={department}
+            onChange={(e) => setDepartment(e.target.value)}
+            id='department'
+          />
+        </div>
 
         <button type='submit' className='btn btn-block mt-8 ml-56'>
           submit
@@ -66,6 +109,15 @@ const Leave = () => {
           >
             <h4 className='font-dosis mt-8 capitalize text-center text-xl'>
               {user.name}
+            </h4>
+            <h4 className='font-dosis mt-8 capitalize text-center text-xl'>
+              {user.email}
+            </h4>
+            <h4 className='font-dosis mt-8 capitalize text-center text-xl'>
+              {user.role}
+            </h4>
+            <h4 className='font-dosis mt-8 capitalize text-center text-xl'>
+              {user.department}
             </h4>
             <button onClick={() => removeUser(user.id)} className='btn mt-4 '>
               Approve

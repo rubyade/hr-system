@@ -6,7 +6,7 @@ import contactdata from '../../contactdata';
 import List from '../../components/Lists.jsx';
 import ContactLists from '@/components/Contact/ContactLists';
 
-export default function Login() {
+export default function Contact() {
   const [people, setPeople] = useState(contactdata);
   return (
     <main className='flex items-center justify-center'>

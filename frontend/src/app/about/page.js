@@ -4,7 +4,7 @@ import Person from '@/components/Person';
 import { useState } from 'react';
 import data from '../../data.jsx';
 
-export default function Login() {
+export default function About() {
   const [people, setPeople] = useState(data);
   return (
     <main className='flex items-center justify-center'>
