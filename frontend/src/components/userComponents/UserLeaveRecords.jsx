@@ -2,7 +2,7 @@
 import React from "react";
 import { useUserLeaveRecords } from "@/services/queries";
 import { Tooltip } from "@nextui-org/react";
-import { DeleteIcon } from "../icons";
+import { DeleteIcon } from "../general/icons";
 import axiosInstance from "@/config/axiosConfig";
 import Swal from "sweetalert2";
 

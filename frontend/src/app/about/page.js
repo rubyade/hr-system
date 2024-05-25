@@ -1,5 +1,5 @@
 'use client';
-import Lists from '@/components/Lists';
+import Lists from '@/components/general/Lists.jsx';
 import Person from '@/components/Person';
 import { useState } from 'react';
 import data from '../../data.jsx';
