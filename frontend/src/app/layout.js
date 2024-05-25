@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
     <html lang='en'>
       <body className='bg-gradient-to-r from-red-300 to-purple-500'>
         <Providers>
-          {/* <Navbar /> */}
+          <Navbar />
           {/* <SwrProviders> */}
           <div>
             <AppProvider>{children}</AppProvider>
