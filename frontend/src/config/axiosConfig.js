@@ -5,6 +5,10 @@ const instance = axios.create({
 });
 
 //default headers
-instance.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
+if (typeof window !== "undefined") {
+  instance.defaults.headers.common[
+    "Authorization"
+  ] = `Bearer ${localStorage.getItem("token")}`;
+}
 
 export default instance;

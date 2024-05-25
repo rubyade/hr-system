@@ -1,4 +1,4 @@
-import UserAttendance from '../../components/userattendance/UserAttendance.jsx';
+import UserAttendance from '../../../components/userattendance/UserAttendance.jsx';
 
 export default function Attendance() {
   return (

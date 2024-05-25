@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { useGlobalContext } from "./context";
 import { FaRegBell } from "react-icons/fa";
@@ -13,12 +13,21 @@ import LineChart from "./LineChart";
 import { useUsers } from "@/services/queries";
 
 const AdminHome = () => {
-  const [users, setUsers] = useState([]);
+  const [userData, setUsersData] = useState([]);
   const [attendance, setAttendance] = useState([]);
   const { openSidebar } = useGlobalContext();
   const { data } = useUsers();
 
-  data && console.log(data);
+  useEffect(() => {
+    if (data?.users) {
+      setUsersData(data.users);
+
+      const attendees = data.users.filter((user) => user.status === "present");
+
+      setAttendance(attendees);
+    }
+  }, [data]);
+
 
   return (
     <main className="">
@@ -60,13 +69,13 @@ const AdminHome = () => {
           <Card
             date="update:Jan 12 2024"
             heading="Total Employees"
-            total="300"
+            total={userData.length.toString().padStart(2, "0")}
             percent="18"
           />
           <Card
             date="update:May 12 2024"
             heading="Total Attendance"
-            total="1560"
+            total={attendance.length.toString().padStart(2, "0")}
             percent="12"
           />
           <Card
