@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         <Providers>
           {/* <Navbar /> */}
           {/* <SwrProviders> */}
-          <div className='w-screen h-screen pt-40 p-14 items-start justify-center'>
+          <div>
             <AppProvider>{children}</AppProvider>
           </div>
 
