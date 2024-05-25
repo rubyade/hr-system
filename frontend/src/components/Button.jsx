@@ -9,9 +9,9 @@ function Button(props) {
   const handleLogout = () => {
     if (action === "logout") {
       localStorage.removeItem("token");
-      window.location.reload();
       router.push("/");
     }
+    window.location.reload();
   };
 
   return (

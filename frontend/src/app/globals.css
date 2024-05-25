@@ -161,6 +161,6 @@ body {
   text-transform: capitalize;
   display: inline-block;
 }
-======= .navLink {
+/* ======= .navLink {
   @apply font-semibold my-7 md:my-0 md:ml-8;
-}
+} */

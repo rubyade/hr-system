@@ -6,3 +6,13 @@ export function useUsers() {
 
   return useSWR("/users");
 }
+
+export function useAdminLeaveRecords() {
+  return useSWR("/leave/admin/records");
+}
+
+
+export function useUserLeaveRecords() {
+  return useSWR("/leave/records");
+}
+
