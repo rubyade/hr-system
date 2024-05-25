@@ -24,20 +24,52 @@ const UserLeaveRecords = () => {
     return 0;
   });
 
-  //dealing with actions
+  //request leave
+  const handleLeaveRequest = async () => {
+    try {
+      const confirmed = confirm(
+        "Are you sure you want to make a leave request?"
+      );
 
+      if (confirmed) {
+        await axiosInstance.post(`/leave/request`);
+
+        //Send sucess alert message after deleting request
+        Swal.fire({
+          icon: "success",
+          title: "Leave request successfully completed.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+
+      return;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //delete request
   const handleDeleteLeaveRequest = async (id) => {
     try {
-      await axiosInstance.delete(`/leave/request/${id}`);
+      const confirmed = confirm(
+        "Are you sure you want to delete this request?"
+      );
 
-      //alert
-      Swal.fire({
-        position: "top",
-        icon: "success",
-        title: "Leave request deleted successfully",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      if (confirmed) {
+        await axiosInstance.delete(`/leave/request/${id}`);
+
+        //Send sucess alert message after deleting request
+
+        Swal.fire({
+          icon: "success",
+          title: "Leave request deleted successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+
+      return;
     } catch (error) {
       console.log(error);
     }
@@ -45,7 +77,15 @@ const UserLeaveRecords = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">User Leave Records</h2>
+      <div className="flex justify-between mb-4 items-center">
+        <h2 className="text-2xl font-bold ">User Leave Records</h2>
+        <button
+          onClick={handleLeaveRequest}
+          className="bg-white rounded-lg py-1 px-2 shadow-md text-purple-500 hover:bg-purple-500 hover:text-white"
+        >
+          Request Leave
+        </button>
+      </div>
       <div className="overflow-x-auto">
         <table className="min-w-full min-h-full divide-y divide-gray-200">
           <thead className="bg-gray-50">

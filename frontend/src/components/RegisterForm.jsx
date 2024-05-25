@@ -67,7 +67,7 @@ function RegisterForm() {
         position: "top",
       });
 
-      router.push("/dashboard");
+      router.push("/admin/dashboard");
 
       //send error
     } catch (error) {
