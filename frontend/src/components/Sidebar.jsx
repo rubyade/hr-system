@@ -1,9 +1,11 @@
 "use client";
 
 import React from "react";
-import { FaTimes } from "react-icons/fa";
+import { FaPowerOff, FaTimes } from "react-icons/fa";
 import { social, links } from "@/controllers/datasidebar";
 import { useGlobalContext } from "./general/context";
+import Button from "./general/Button";
+import Link from "next/link";
 
 function Sidebar() {
   const { isSidebarOpen, closeSidebar, openSidebar } = useGlobalContext();
@@ -40,6 +42,11 @@ function Sidebar() {
           );
         })}
       </ul>
+      <div className="flex gap-8 items-center text-lg capitalize px-5 pb-8 text-gray-700 tracking-wide hover:bg-slate-400 hover:text-gray-800 transition duration-300 ease-in-out all">
+        <Button action="logout" >
+          <FaPowerOff /> Logout1
+        </Button>
+      </div>
       <ul className="social-links flex justify-center pb-6 gap-1">
         {social.map((link) => {
           const { id, url, icon } = link;

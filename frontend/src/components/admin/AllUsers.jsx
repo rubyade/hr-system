@@ -5,6 +5,7 @@ import { Tooltip } from "@nextui-org/react";
 import axiosInstance from "@/config/axiosConfig";
 import Swal from "sweetalert2";
 import { EditIcon, DeleteIcon } from "../general/icons";
+import Link from "next/link";
 
 const AllUsersRecords = () => {
   const { data, isLoading, error } = useUsers();
@@ -17,12 +18,12 @@ const AllUsersRecords = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  data && console.log(data);
-
-
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">All Users' Records</h2>
+    <Link href={"/admin/dashboard"} className="mb-8">
+     Back to Dashboard
+    </Link>
+      <h2 className="text-2xl font-bold mb-4">All Users Records</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full min-h-full divide-y divide-gray-200">
           <thead className="bg-gray-50">

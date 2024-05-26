@@ -29,7 +29,7 @@ function Navbar() {
   return (
     <>
       {userRole !== "admin" && (
-        <div className="w-full fixed top-0 left-0 shadow-lg">
+        <div className="w-full fixed top-0 left-0 shadow-lg mb-20">
           <nav className="md:px-10 py-4 px-7 md:flex justify-between items-center font-teachers  bg-gradient-to-r from-red-300 to-purple-500">
             {/* Logo Here!! */}
             <div className="flex text-2xl cursor-pointer items-center gap-2">
@@ -95,10 +95,10 @@ function Navbar() {
               {isAuthenticated && (
                 <>
                   <li className="navLink">
-                    <Link href={"/work"}>Work</Link>
+                    <Link href={"/user/work"}>Work</Link>
                   </li>
                   <li className="navLink">
-                    <Link href={"/leave"}>Leave</Link>
+                    <Link href={"/user/leaverecords"}>Leave</Link>
                   </li>
                   <li className="navLink">
                     <Link href={"/user"}>Account</Link>
