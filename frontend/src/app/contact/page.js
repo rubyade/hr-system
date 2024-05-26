@@ -1,9 +1,9 @@
 'use client';
-import Lists from '@/components/Lists';
+import Lists from '@/components/general/Lists';
 import Person from '@/components/Person';
 import { useState } from 'react';
 import contactdata from '../../contactdata';
-import List from '../../components/Lists.jsx';
+import List from '../../components/general/Lists.jsx';
 import ContactLists from '@/components/Contact/ContactLists';
 
 export default function Contact() {

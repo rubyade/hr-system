@@ -2,7 +2,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 import "./globals.css";
-import { AppProvider } from "../components/context";
+import { AppProvider } from "../components/general/context";
 import Navbar from "@/components/Navbar";
 import { SwrProviders } from "./providers";
 import * as React from "react";
@@ -26,11 +26,13 @@ export default function RootLayout({ children }) {
 
           {/* </SwrProviders> */}
           <Navbar />
-          <SwrProviders>
-            <div className="w-screen h-screen  px-14 items-start justify-center">
-              <AppProvider>{children}</AppProvider>
-            </div>
-          </SwrProviders>
+          <AppProvider>
+            <SwrProviders>
+              <div className="w-screen py-20 h-screen px-14 items-start justify-center">
+                {children}
+              </div>
+            </SwrProviders>
+          </AppProvider>
         </Providers>
       </body>
     </html>

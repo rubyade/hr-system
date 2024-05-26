@@ -23,7 +23,7 @@ import {
   PlusIcon,
   SearchIcon,
   ChevronDownIcon,
-} from '../../components/icons';
+} from '../general/icons';
 import { columns, users, statusOptions } from '../../components/attendancedata';
 import { capitalize } from '../../components/users/utils';
 

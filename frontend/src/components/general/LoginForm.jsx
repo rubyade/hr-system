@@ -2,10 +2,9 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import img from "../../public/krakenimages-376KN_ISplE-unsplash.jpg";
 import Image from "next/image";
 import Swal from "sweetalert2";
-import axiosInstance from "../config/axiosConfig";
+import axiosInstance from "../../config/axiosConfig";
 import { userInfo } from "@/controllers/userAuth/userAuth";
 import userToken from "@/controllers/userAuth/userToken";
 function LoginForm() {
@@ -86,8 +85,10 @@ function LoginForm() {
       {/* image */}
       <div>
         <Image
-          src={img}
+          src="/krakenimages-376KN_ISplE-unsplash.jpg"
           alt="/"
+          width={400}
+          height={400}
           className="rounded max-w-72 md:max-w-96 lg:max-w-lg  xl:max-w-2xl lg:pl-8 lg:border-none dark:border-neutral-700 dark:bg-neutral-800"
         />
       </div>
