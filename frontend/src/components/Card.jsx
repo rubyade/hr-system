@@ -8,7 +8,7 @@ const card = (props) => {
   const total = props.total;
   const currDate = new Date().toLocaleDateString();
   return (
-    <div className='card shadow-md mb-4 ml-2 md:ml-0 p-6 gap-4 h-40 w-72 md:w-52 lg:w-72 lg:ml-4 rounded flex flex-col bg-white border-0 border-gray-400'>
+    <div className='card shadow-md mb-4 md:ml-0 p-6 gap-4 h-40 w-60 md:w-72 lg:w-96 lg:h-48 rounded flex flex-col bg-white border-0 border-gray-400'>
       <div className='flex gap-1 items-center'>
         <button className=' bg-slate-50 shadow-md hover:bg-gray-700 border-4 border-transparent cursor-pointer text-xs text-blue-500 font-bold'>
           <FaUserFriends />
