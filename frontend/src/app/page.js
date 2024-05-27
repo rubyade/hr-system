@@ -1,9 +1,10 @@
-import LandingPage from '@/components/LandingPage';
+const { default: LandingPage } = require("@/components/general/LandingPage");
+
+
 
 export default function Home() {
   return (
     <div>
-      <Navbar />
       <LandingPage />
     </div>
   );
