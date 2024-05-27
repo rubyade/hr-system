@@ -4,25 +4,41 @@ import React, { useState } from 'react';
 import { HiMenuAlt3 } from 'react-icons/hi';
 import { MdOutlineDashboard } from 'react-icons/md';
 import { RiSettings4Line } from 'react-icons/ri';
-import { TbReportAnalytics } from 'react-icons/tb';
-import { AiOutlineUser, AiOutlineHeart } from 'react-icons/ai';
-import { FiMessageSquare, FiFolder, FiShoppingCart } from 'react-icons/fi';
+import { AiOutlineUser } from 'react-icons/ai';
+import { FiMessageSquare } from 'react-icons/fi';
+import {
+  FaCalendarAlt,
+  FaWpforms,
+  FaGripHorizontal,
+  FaPowerOff,
+} from 'react-icons/fa';
 import AdminHome from '../AdminHome';
+import Link from 'next/link';
 
 const UserHome = () => {
   const menus = [
-    { name: 'dashboard', link: '/', icon: MdOutlineDashboard },
-    { name: 'user', link: '/', icon: AiOutlineUser },
-    { name: 'messages', link: '/', icon: FiMessageSquare },
-    { name: 'analytics', link: '/', icon: TbReportAnalytics, margin: true },
-    { name: 'File Manager', link: '/', icon: FiFolder },
-    { name: 'Cart', link: '/', icon: FiShoppingCart },
-    { name: 'Saved', link: '/', icon: AiOutlineHeart, margin: true },
-    { name: 'Setting', link: '/', icon: RiSettings4Line },
+    { name: 'Dashboard', url: '/admin/dashboard', icon: MdOutlineDashboard },
+    { name: 'Employees', url: '/admin/users', icon: AiOutlineUser },
+    { name: 'Projects', url: '/admin/project', icon: FiMessageSquare },
+    {
+      name: 'Leave Records',
+      url: '/admin/leaverecords',
+      icon: FaCalendarAlt,
+      margin: true,
+    },
+    { name: 'Attendance', url: '/admin/workreport', icon: FaWpforms },
+    { name: 'Departments', url: '/admin/workrecords', icon: FaGripHorizontal },
+    {
+      name: 'Settings',
+      url: '/',
+      icon: RiSettings4Line,
+      margin: true,
+    },
+    { name: 'Logout', url: '/admin/project', icon: FaPowerOff },
   ];
   const [open, setOpen] = useState(true);
   return (
-    <section className='flex md:gap-6'>
+    <section className='flex gap-4 md:gap-6'>
       <div
         className={` bg-gray-600 min-h-screen ${
           open ? 'w-72' : 'w-16'
@@ -37,12 +53,12 @@ const UserHome = () => {
         </div>
         <div className='mt-4 flex flex-col gap-4 relative'>
           {menus?.map((menu, i) => (
-            <a
-              to={menu?.link}
+            <Link
+              href={`${menu.url}`}
               key={i}
               className={` ${
                 menu?.margin && 'mt-5'
-              } group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
+              } group flex items-center text-sm lg:text-lg gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
             >
               <div>{React.createElement(menu?.icon, { size: '20' })}</div>
               <h2
@@ -62,7 +78,7 @@ const UserHome = () => {
               >
                 {menu?.name}
               </h2>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
