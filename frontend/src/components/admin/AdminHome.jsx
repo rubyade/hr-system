@@ -37,8 +37,8 @@ const AdminHome = () => {
       </button>
 
       <div className="flex gap-9 items-center pr-5 justify-end">
-        <Button label="Login" />
-        <Button label="Signin" />
+        <Button label="Logout" action="logout"/>
+        {/* <Button label="Signin" /> */}
         <div className=" flex flex-col justify-center items-center w-32">
           <h3 className="text-sm text-gray-700 font-bold font-quicksand">
             {username}

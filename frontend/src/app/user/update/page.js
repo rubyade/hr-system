@@ -1,5 +1,11 @@
-import UpdateForm from "@/components/userComponents/UpdateForm";
+import dynamic from "next/dynamic";
 
+const UpdateForm = dynamic(
+  () => import("../../../components/userComponents/UpdateForm"),
+  {
+    ssr: false,
+  }
+);
 function UpdateUser() {
   return <UpdateForm />;
 }

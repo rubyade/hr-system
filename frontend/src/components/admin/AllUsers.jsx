@@ -1,11 +1,37 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useUsers } from "@/services/queries";
 import { Tooltip } from "@nextui-org/react";
-import {DeleteIcon } from "../general/icons";
+import { DeleteIcon } from "../general/icons";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { userInfo } from "@/controllers/userAuth/userAuth";
 
 const AllUsersRecords = () => {
+  const router = useRouter();
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+
+    if (!token) {
+      router.push("/login");
+      return;
+    }
+
+    const { role } = userInfo();
+
+    if (!role) {
+      router.push("/login");
+      return;
+    }
+
+    if (role !== "admin") {
+      router.push("/");
+      return;
+    }
+
+    router.refresh();
+  }, [router]);
+
   const { data, isLoading, error } = useUsers();
 
   if (isLoading) {
@@ -18,16 +44,16 @@ const AllUsersRecords = () => {
 
   return (
     <div className="container mx-auto p-4">
-    <Link href={"/admin/dashboard"} className="mb-8">
-     Back to Dashboard
-    </Link>
+      <Link href={"/admin/dashboard"} className="mb-8">
+        Back to Dashboard
+      </Link>
       <h2 className="text-2xl font-bold mb-4">All Users Records</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full min-h-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                ID
+                Id
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 User Name

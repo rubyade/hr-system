@@ -34,14 +34,19 @@ function UpdateForm() {
     const { userPassword } = userDetails;
 
     try {
-      const token = localStorage.getItem("token");
-
-      if (!token) {
-        seterror("Not authenticated, please login");
-        return;
+      if (
+        typeof window !== null &&
+        typeof sessionStorage !== null
+      ) {
+        const token = sessionStorage.getItem("token");
+        if (!token) {
+          
+          router.push("/login");
+          return null;
+        }
       }
 
-      const res = await axiosInstance.patch(
+      await axiosInstance.patch(
         `/update/user/${id}`,
         { userPassword },
         {
@@ -52,7 +57,6 @@ function UpdateForm() {
         }
       );
 
-      console.log(res);
       //send alert
       Swal.fire({
         icon: "success",

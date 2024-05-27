@@ -1,13 +1,42 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useAdminLeaveRecords } from "@/services/queries";
 import { Tooltip } from "@nextui-org/react";
 import axiosInstance from "@/config/axiosConfig";
 import Swal from "sweetalert2";
 import { EditIcon, DeleteIcon } from "../general/icons";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { userInfo } from "@/controllers/userAuth/userAuth";
 
 const AdminLeaveRecords = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (typeof sessionStorage !== null) {
+      const token = sessionStorage.getItem("token");
+
+      if (!token) {
+        router.push("/login");
+        return;
+      }
+
+      const { role } = userInfo();
+
+      if (!role) {
+        router.push("/login");
+        return;
+      }
+
+      if (role !== "admin") {
+        router.push("/");
+        return;
+      }
+
+      router.refresh();
+    }
+  }, [router]);
+
   const { data, isLoading, error } = useAdminLeaveRecords();
 
   if (isLoading) {
@@ -16,6 +45,10 @@ const AdminLeaveRecords = () => {
 
   if (error) {
     return <div>Error: {error.message}</div>;
+  }
+
+  if (!data || !data.formattedLeaveRecords) {
+    return <div>No leave records found.</div>;
   }
 
   // Sort data with pending leaves appearing on top
@@ -80,14 +113,11 @@ const AdminLeaveRecords = () => {
         const [startDate, endDate] = dates;
 
         try {
-          await axiosInstance.patch(
-            `/leave/admin/update/${id}`,
-            {
-              startDate: `${startDate}`,
-              endDate: `${endDate}`,
-              leaveStatus: "approved",
-            }
-          );
+          await axiosInstance.patch(`/leave/admin/update/${id}`, {
+            startDate: `${startDate}`,
+            endDate: `${endDate}`,
+            leaveStatus: "approved",
+          });
 
           Swal.fire({
             icon: "success",

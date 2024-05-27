@@ -16,7 +16,7 @@ function Button(props) {
         confirmButtonText: "Confirm",
       }).then((result) => {
         if (result.isConfirmed) {
-          localStorage.removeItem("token");
+          sessionStorage.removeItem("token");
           Swal.fire("Successfully logged out.", "", "success");
 
           router.push("/");

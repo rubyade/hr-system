@@ -9,8 +9,8 @@ function AdminDashboard() {
  
   const router = useRouter();
   useEffect(() => {
-    if (typeof localStorage !== null) {
-      const token = localStorage.getItem("token");
+    if (typeof sessionStorage !== null) {
+      const token = sessionStorage.getItem("token");
 
       if (!token) {
         router.push("/login");
