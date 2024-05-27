@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import Button from "./general/Button";
+import Button, { CheckinButton } from "./general/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -14,17 +14,29 @@ function Navbar() {
   const [clicked, setClicked] = useState(false);
   const [userRole, setRole] = useState("user");
   const { isAuthenticated } = useToken();
+  const [checkinId, setCheckinId] = useState(null);
 
   useEffect(() => {
     if (isAuthenticated) {
       const { role } = userInfo();
       setRole(role);
+
+      if (typeof window !== 'undefined') {
+        const storedCheckinId = sessionStorage.getItem("checkinId");
+        if (storedCheckinId) {
+          setCheckinId(storedCheckinId);
+        }
+      }
     }
   }, [isAuthenticated]);
 
   const handleClick = () => {
     setClicked(!clicked);
   };
+
+  if (!checkinId) {
+    return null;
+  }
 
   return (
     <>
@@ -38,9 +50,11 @@ function Navbar() {
                 size="1.5x"
                 className="fill-current text-white"
               />
-              <h2 className="text-left font-bold text-xl font-jaro text-white xl:text-2xl">
-                Hr-GroupA
-              </h2>
+              <Link href={"/"}>
+                <h2 className="text-left font-bold text-xl font-jaro text-white xl:text-2xl">
+                  Hr-GroupA
+                </h2>
+              </Link>
             </div>
 
             {/* Menu Icon */}
@@ -94,14 +108,20 @@ function Navbar() {
 
               {isAuthenticated && (
                 <>
-                  <li className="navLink">
+                  {/* <li className="navLink">
                     <Link href={"/user/work"}>Work</Link>
+                  </li> */}
+                  <li href={""} className="navLink">
+                    <CheckinButton
+                      label={checkinId ? "Checkout" : "Checkin"}
+                      action={checkinId ? "checkout" : "checkin"}
+                    />
                   </li>
                   <li className="navLink">
                     <Link href={"/user/leaverecords"}>Leave</Link>
                   </li>
                   <li className="navLink">
-                    <Link href={"/user"}>Account</Link>
+                    <Link href={"/user/update"}>Update</Link>
                   </li>
                   <li href={""} className="py-1 md:static md:ml-8" passHref>
                     <Button label="Logout" action="logout" />

@@ -2,9 +2,7 @@
 import React from "react";
 import { useUsers } from "@/services/queries";
 import { Tooltip } from "@nextui-org/react";
-import axiosInstance from "@/config/axiosConfig";
-import Swal from "sweetalert2";
-import { EditIcon, DeleteIcon } from "../general/icons";
+import {DeleteIcon } from "../general/icons";
 import Link from "next/link";
 
 const AllUsersRecords = () => {

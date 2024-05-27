@@ -29,6 +29,9 @@ const AdminWorkReport = () => {
         <table className="min-w-full min-h-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
+            <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Id
+              </th>
               <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Username
               </th>
@@ -48,12 +51,15 @@ const AdminWorkReport = () => {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {attendanceData.map(([username, record], index) => (
-              <tr key={username}>
+              <tr key={index}>
+              <td className="px-6 py-4 whitespace-nowrap text-center">
+                  {index +1}
+                </td>
                 <td className="px-6 py-4 whitespace-nowrap text-center">
                   {username.charAt(0).toUpperCase() + username.slice(1)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-center">
-                  {record.totalWorkHours.toFixed(2)}
+                  {record.totalWorkHours && record.totalWorkHours.toFixed(2)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-center">
                   {record.lateArrivals}

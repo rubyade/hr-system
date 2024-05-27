@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           <AppProvider>
             <SwrProviders>
-              <div className="w-screen py-20 h-screen px-14 items-start justify-center">
+              <div className="w-full  py-20  h-screen px-14 items-start justify-center">
                 {children}
               </div>
             </SwrProviders>

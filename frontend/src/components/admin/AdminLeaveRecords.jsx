@@ -80,7 +80,7 @@ const AdminLeaveRecords = () => {
         const [startDate, endDate] = dates;
 
         try {
-          const response = await axiosInstance.patch(
+          await axiosInstance.patch(
             `/leave/admin/update/${id}`,
             {
               startDate: `${startDate}`,
@@ -88,8 +88,6 @@ const AdminLeaveRecords = () => {
               leaveStatus: "approved",
             }
           );
-
-          console.log("Response:", response);
 
           Swal.fire({
             icon: "success",
