@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import Image from "next/image";
@@ -83,7 +82,7 @@ function RegisterForm() {
 
   return (
     <div className="absolute">
-      <div className="flex flex-col md:flex-row items-center justify-between mt-12">
+      <div className="flex flex-col md:flex-row items-center justify-between ">
         {/* image */}
         <div>
           <Image
@@ -114,6 +113,7 @@ function RegisterForm() {
                 id=""
                 name="userName"
                 type="text"
+                minLength={6}
                 onChange={handleChange}
               />
               <input
@@ -143,16 +143,6 @@ function RegisterForm() {
               >
                 Register
               </button>{" "}
-              {/* Login if already registered */}
-              <p className="font-quicksand text-sm xl:text-lg mt-4 text-white ">
-                Already registered?{" "}
-                <Link
-                  className="hover:text-blue-800 xl:text-lg text-sm text-white font-quicksand"
-                  href={"/login"}
-                >
-                  Login
-                </Link>
-              </p>
             </form>
           </div>
         </div>

@@ -8,6 +8,30 @@ import { EditIcon, DeleteIcon } from '../general/icons';
 import Link from 'next/link';
 
 const AllUsersRecords = () => {
+  const router = useRouter();
+  useEffect(() => {
+    const token = sessionStorage.getItem('token');
+
+    if (!token) {
+      router.push('/login');
+      return;
+    }
+
+    const { role } = userInfo();
+
+    if (!role) {
+      router.push('/login');
+      return;
+    }
+
+    if (role !== 'admin') {
+      router.push('/');
+      return;
+    }
+
+    router.refresh();
+  }, [router]);
+
   const { data, isLoading, error } = useUsers();
   console.log(data);
 

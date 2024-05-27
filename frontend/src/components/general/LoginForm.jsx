@@ -22,6 +22,7 @@ function LoginForm() {
       }
       router.push("/");
     }
+    router.push("/login");
   }, [isAuthenticated]);
 
   //login if not logged in
@@ -56,7 +57,7 @@ function LoginForm() {
       const res = await axiosInstance.post("/auth/user/login", userDetails);
 
       //set token
-      localStorage.setItem("token", res.data.token);
+      sessionStorage.setItem("token", res.data.token);
 
       // check user role
       const { role } = userInfo();
@@ -68,7 +69,9 @@ function LoginForm() {
       }
       //redirect to home
 
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     } catch (error) {
       Swal.fire({
         icon: "error",

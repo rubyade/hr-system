@@ -1,9 +1,40 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAdminWorkRecords } from "@/services/queries";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { userInfo } from "@/controllers/userAuth/userAuth";
 
 const AdminWorkRecords = () => {
+  const router = useRouter();
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    if (typeof sessionStorage !== "undefined") {
+      const token = sessionStorage.getItem("token");
+
+      if (!token) {
+        router.push("/login");
+        return;
+      }
+
+      const { role } = userInfo();
+
+      if (!role) {
+        router.push("/login");
+        return;
+      }
+
+      if (role !== "admin") {
+        router.push("/");
+        return;
+      }
+
+      setRole(role);
+      router.refresh();
+    }
+  }, [router]);
+
   const { data, isLoading, error } = useAdminWorkRecords();
 
   if (isLoading) {
@@ -12,6 +43,10 @@ const AdminWorkRecords = () => {
 
   if (error) {
     return <div>Error: {error.message}</div>;
+  }
+
+  if (!data || !data.workTime) {
+    return <div>No work records found.</div>;
   }
 
   // Sort data by loginTime (most recent first)

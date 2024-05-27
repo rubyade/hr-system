@@ -1,10 +1,9 @@
 import jwt from "jsonwebtoken";
 
 export const userInfo = () => {
-  if (typeof localStorage !== "undefined") {
-    const token = localStorage.getItem("token");
+  if (typeof sessionStorage !== "undefined") {
+    const token = sessionStorage.getItem("token");
     if (!token) {
-      alert("No authentication token");
       return;
     }
 

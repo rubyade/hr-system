@@ -8,8 +8,8 @@ const useToken = () => {
   });
 
   useEffect(() => {
-    if (typeof localStorage !== "undefined") {
-      const token = localStorage.getItem("token");
+    if (typeof sessionStorage !== "undefined") {
+      const token = sessionStorage.getItem("token");
 
       if (token) {
         setTokenStatus({ isAuthenticated: true, token });

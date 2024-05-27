@@ -8,7 +8,7 @@ const instance = axios.create({
 if (typeof window !== "undefined") {
   instance.defaults.headers.common[
     "Authorization"
-  ] = `Bearer ${localStorage.getItem("token")}`;
+  ] = `Bearer ${sessionStorage.getItem("token")}`;
 }
 
 export default instance;
