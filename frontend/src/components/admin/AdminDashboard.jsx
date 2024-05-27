@@ -1,11 +1,14 @@
 'use client';
-import { userInfo } from '@/controllers/userAuth/userAuth';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+
 import Sidebar from '../Sidebar';
 import AdminHome from './AdminHome';
 
+import { userInfo } from '@/controllers/userAuth/userAuth';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+
 function AdminDashboard() {
+
  
   const router = useRouter();
   useEffect(() => {
@@ -32,6 +35,7 @@ function AdminDashboard() {
       router.refresh();
     }
   }, [router]);
+
 
   return (
     <div>

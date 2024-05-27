@@ -1,6 +1,7 @@
 import React from 'react';
 import Chart from 'chart.js/auto';
-import { Line } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
+Bar;
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June'];
 
@@ -18,7 +19,7 @@ const data = {
 
 const LineChart = () => {
   return (
-    <div className='mb-4 w-72 h-48 md:ml-16 md:w-3/6 md:h-72 md:p-4 bg-white rounded shadow-md md:mr-6'>
+    <div className='mb-4 w-80 h-48 md:h-[270px] md:min-w-80 lg:min-w-[511px] bg-white rounded shadow-md md:ml-4'>
       <Line data={data} />
     </div>
   );
