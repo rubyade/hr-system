@@ -1,7 +1,6 @@
 'use client';
 import Sidebar from './Sidebar';
 import AdminHome from './AdminHome';
-import UserHome from '@/components/users/UserHome';
 import { userInfo } from '@/controllers/userAuth/userAuth';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -36,8 +35,8 @@ function AdminDashboard() {
 
   return (
     <div>
-      <UserHome />
-      {/* <Sidebar /> */}
+      <Sidebar />
+      <AdminHome />
     </div>
   );
 }

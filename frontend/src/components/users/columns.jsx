@@ -1,4 +1,4 @@
-import { EditIcon, DeleteIcon, EyeIcon } from '../icons';
+import { EditIcon, DeleteIcon, EyeIcon } from '../general/icons';
 import { User, Chip, Tooltip } from '@nextui-org/react';
 
 const statusColorMap = {

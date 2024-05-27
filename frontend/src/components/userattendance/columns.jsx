@@ -1,5 +1,5 @@
 import { User, Tooltip } from '@nextui-org/react';
-import { DeleteIcon, EditIcon, EyeIcon } from '../../components/icons';
+import { DeleteIcon, EditIcon, EyeIcon } from '../general/icons';
 
 export const columns = [
   {

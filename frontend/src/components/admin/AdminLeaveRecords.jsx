@@ -2,9 +2,10 @@
 import React from "react";
 import { useAdminLeaveRecords } from "@/services/queries";
 import { Tooltip } from "@nextui-org/react";
-import { EditIcon, DeleteIcon } from "./icons";
 import axiosInstance from "@/config/axiosConfig";
 import Swal from "sweetalert2";
+import { EditIcon, DeleteIcon } from "../general/icons";
+import Link from "next/link";
 
 const AdminLeaveRecords = () => {
   const { data, isLoading, error } = useAdminLeaveRecords();
@@ -79,18 +80,25 @@ const AdminLeaveRecords = () => {
         const [startDate, endDate] = dates;
 
         try {
-          await axiosInstance.patch(`/leave/admin/update/${id}`, {
-            startDate: `${startDate}`,
-            endDate: `${endDate}`,
-            leaveStatus: "approved",
-          });
+          const response = await axiosInstance.patch(
+            `/leave/admin/update/${id}`,
+            {
+              startDate: `${startDate}`,
+              endDate: `${endDate}`,
+              leaveStatus: "approved",
+            }
+          );
+
+          console.log("Response:", response);
 
           Swal.fire({
             icon: "success",
             title: "Leave accepted.",
             timer: 1500,
           });
+          return;
         } catch (error) {
+          console.error("Error response:", error.response);
           Swal.fire({
             icon: "error",
             title: "Error",
@@ -99,7 +107,7 @@ const AdminLeaveRecords = () => {
         }
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error:", error);
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -110,6 +118,9 @@ const AdminLeaveRecords = () => {
 
   return (
     <div className="container mx-auto p-4">
+      <Link href={"/admin/dashboard"} className="mb-8">
+        Back to Dashboard
+      </Link>
       <h2 className="text-2xl font-bold mb-4">Admin Leave Records</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full min-h-full divide-y divide-gray-200">

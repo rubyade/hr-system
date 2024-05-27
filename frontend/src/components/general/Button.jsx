@@ -10,8 +10,10 @@ function Button(props) {
     if (action === "logout") {
       localStorage.removeItem("token");
       router.push("/");
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     }
-    window.location.reload();
   };
 
   return (

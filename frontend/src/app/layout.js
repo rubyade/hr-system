@@ -19,8 +19,18 @@ export default function RootLayout({ children }) {
       {/* className='bg-gradient-to-r from-red-300 to-purple-500 */}
       <body>
         <Providers>
-          <SwrProviders>
+          {/* <Navbar /> */}
+          {/* <SwrProviders> */}
+          <div>
             <AppProvider>{children}</AppProvider>
+          </div>
+
+          {/* </SwrProviders> */}
+          <Navbar />
+          <SwrProviders>
+            <div className='w-screen h-screen  px-14 items-start justify-center'>
+              <AppProvider>{children}</AppProvider>
+            </div>
           </SwrProviders>
         </Providers>
       </body>

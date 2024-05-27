@@ -1,14 +1,14 @@
-'use client';
-import Link from 'next/link';
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import Button from './Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { faBusinessTime } from '@fortawesome/free-solid-svg-icons';
-import useToken from '@/controllers/userAuth/userToken';
-import { userInfo } from '@/controllers/userAuth/userAuth';
+"use client";
+import Link from "next/link";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import Button from "./Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBusinessTime } from "@fortawesome/free-solid-svg-icons";
+import useToken from "@/controllers/userAuth/userToken";
+import { userInfo } from "@/controllers/userAuth/userAuth";
 
 function Navbar() {
   const [clicked, setClicked] = useState(false);
@@ -28,9 +28,9 @@ function Navbar() {
   // userRole !== "admin" &&
   return (
     <>
-      {
-        <div className='w-full fixed top-0 left-0 shadow-lg'>
-          <nav className='md:px-10 py-4 px-7 md:flex justify-between items-center font-teachers  bg-gradient-to-r from-red-300 to-purple-500'>
+      {userRole !== "admin" && (
+        <div className="w-full fixed top-0 left-0 shadow-lg">
+          <nav className="md:px-10 py-4 px-7 md:flex justify-between items-center font-teachers  bg-gradient-to-r from-red-300 to-purple-500">
             {/* Logo Here!! */}
             <div className='flex text-2xl cursor-pointer items-center gap-2'>
               <FontAwesomeIcon
@@ -94,11 +94,11 @@ function Navbar() {
 
               {isAuthenticated && (
                 <>
-                  <li className='navLink'>
-                    <Link href={'/work'}>Work</Link>
+                  <li className="navLink">
+                    <Link href={"/work"}>Work</Link>
                   </li>
-                  <li className='navLink'>
-                    <Link href={'/leave'}>Leave</Link>
+                  <li className="navLink">
+                    <Link href={"/leave"}>Leave</Link>
                   </li>
                   <li className='navLink'>
                     <Link href={'/user'}>Account</Link>
