@@ -3,7 +3,7 @@ import Person from '../Person';
 
 const Lists = ({ people }) => {
   return (
-    <section>
+    <section className='flex justify-center gap-12 flex-wrap'>
       {people.map((person) => {
         return <Person key={person.id} {...person} />;
       })}

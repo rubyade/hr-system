@@ -1,34 +1,31 @@
 'use client';
-
-import Sidebar from '../Sidebar';
+import Sidebar from './Sidebar';
 import AdminHome from './AdminHome';
-
 import { userInfo } from '@/controllers/userAuth/userAuth';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import UserHome from '../users/UserHome';
 
 function AdminDashboard() {
-
- 
   const router = useRouter();
   useEffect(() => {
     if (typeof sessionStorage !== null) {
-      const token = sessionStorage.getItem("token");
+      const token = sessionStorage.getItem('token');
 
       if (!token) {
-        router.push("/login");
+        router.push('/login');
         return;
       }
 
       const { role } = userInfo();
 
       if (!role) {
-        router.push("/login");
+        router.push('/login');
         return;
       }
 
-      if (role !== "admin") {
-        router.push("/");
+      if (role !== 'admin') {
+        router.push('/');
         return;
       }
 
@@ -36,11 +33,10 @@ function AdminDashboard() {
     }
   }, [router]);
 
-
   return (
     <div>
-      <Sidebar />
-      <AdminHome />
+      {/* <Sidebar /> */}
+      <UserHome />
     </div>
   );
 }

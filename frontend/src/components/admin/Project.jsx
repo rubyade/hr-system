@@ -3,7 +3,7 @@ import Card from '@/components/admin/Card';
 
 function Project() {
   return (
-    <div className='pt-8'>
+    <div className='pt-8 bg-gradient-to-r from-red-300 to-purple-500'>
       <h1 className='font-dosis bg-white w-96 ml-72 mb-4 rounded shadow-md font-bold text-center text-6xl tracking-wider text-gray-600'>
         Active Projects
       </h1>
