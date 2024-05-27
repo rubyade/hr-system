@@ -18,9 +18,9 @@ export default function RootLayout({ children }) {
     <html lang="en" className="h-full">
       <body className="bg-gradient-to-r py-6 min-h-full from-red-300 to-purple-500">
         <Providers>
-          <Navbar />
           <AppProvider>
             <SwrProviders>
+              <Navbar />
               <div className="w-full  py-20  h-screen px-14 items-start justify-center">
                 {children}
               </div>

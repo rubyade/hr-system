@@ -21,11 +21,9 @@ function Navbar() {
       const { role } = userInfo();
       setRole(role);
 
-      if (typeof window !== 'undefined') {
-        const storedCheckinId = sessionStorage.getItem("checkinId");
-        if (storedCheckinId) {
-          setCheckinId(storedCheckinId);
-        }
+      const storedCheckinId = sessionStorage.getItem("checkinId");
+      if (storedCheckinId) {
+        setCheckinId(storedCheckinId);
       }
     }
   }, [isAuthenticated]);
@@ -40,7 +38,7 @@ function Navbar() {
 
   return (
     <>
-      {userRole !== "admin" && (
+      {
         <div className="w-full fixed top-0 left-0 shadow-lg mb-20">
           <nav className="md:px-10 py-4 px-7 md:flex justify-between items-center font-teachers  bg-gradient-to-r from-red-300 to-purple-500">
             {/* Logo Here!! */}
@@ -106,11 +104,8 @@ function Navbar() {
                 </>
               )}
 
-              {isAuthenticated && (
+              {isAuthenticated && userRole !== "admin" && (
                 <>
-                  {/* <li className="navLink">
-                    <Link href={"/user/work"}>Work</Link>
-                  </li> */}
                   <li href={""} className="navLink">
                     <CheckinButton
                       label={checkinId ? "Checkout" : "Checkin"}
@@ -131,7 +126,7 @@ function Navbar() {
             </ul>
           </nav>
         </div>
-      )}
+      }
     </>
   );
 }
