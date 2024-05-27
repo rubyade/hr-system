@@ -2,7 +2,7 @@ import axios from "../../config/axiosConfig";
 
 export const fetcher = async () => {
 
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
   if (!token) {
     throw new Error("No token found in localStorage");
   }

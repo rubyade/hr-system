@@ -1,9 +1,37 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useAdminWorkReport } from "@/services/queries";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { userInfo } from "@/controllers/userAuth/userAuth";
 
 const AdminWorkReport = () => {
+  const router = useRouter();
+  useEffect(() => {
+    if (typeof sessionStorage !== null) {
+      const token = sessionStorage.getItem("token");
+
+      if (!token) {
+        router.push("/login");
+        return;
+      }
+
+      const { role } = userInfo();
+
+      if (!role) {
+        router.push("/login");
+        return;
+      }
+
+      if (role !== "admin") {
+        router.push("/");
+        return;
+      }
+
+      router.refresh();
+    }
+  }, [router]);
+
   const { data, isLoading, error } = useAdminWorkReport();
 
   if (isLoading) {
@@ -14,10 +42,12 @@ const AdminWorkReport = () => {
     return <div>Error: {error.message}</div>;
   }
 
+  if (!data || !data.attendanceData) {
+    return <div>No leave records found.</div>;
+  }
+
   // Convert the attendance data to an array for easier mapping
   const attendanceData = Object.entries(data.attendanceData);
-
-  console.log(attendanceData);
 
   return (
     <div className="container mx-auto p-4">
@@ -29,6 +59,9 @@ const AdminWorkReport = () => {
         <table className="min-w-full min-h-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
+              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Id
+              </th>
               <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Username
               </th>
@@ -48,12 +81,15 @@ const AdminWorkReport = () => {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {attendanceData.map(([username, record], index) => (
-              <tr key={username}>
+              <tr key={index}>
+                <td className="px-6 py-4 whitespace-nowrap text-center">
+                  {index + 1}
+                </td>
                 <td className="px-6 py-4 whitespace-nowrap text-center">
                   {username.charAt(0).toUpperCase() + username.slice(1)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-center">
-                  {record.totalWorkHours.toFixed(2)}
+                  {record.totalWorkHours && record.totalWorkHours.toFixed(2)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-center">
                   {record.lateArrivals}

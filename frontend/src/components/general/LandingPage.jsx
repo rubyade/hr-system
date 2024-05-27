@@ -1,13 +1,17 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Button from "./Button";
 import List from "./List";
 import Link from "next/link";
+import useToken from "@/controllers/userAuth/userToken";
 
 function LandingPage() {
+  const { isAuthenticated } = useToken();
+
   return (
-    <div className="bg-gradient-to-r from-red-300 to-purple-500">
-      <div className="p-8 lg:p-14 flex flex-col md:flex-row justify-between pt-24 md:pt-36 lg:pt-48  xl:pt-52 xl:gap-16">
+    <div className="bg-gradient-to-r from-red-300 to-purple-500 min-h-full w-full flex justify-between flex-col">
+      <div className="p-8 lg:p-14 flex flex-col md:flex-row justify-between   xl:gap-16 items-center">
         <div className="flex flex-col md:pr-2 lg:w-7/12 lg:pl-14 lg:mt-7">
           <h4 className="font-bold font-quicksand text-xs text-white uppercase xl:text-sm ">
             automate and hire
@@ -23,12 +27,18 @@ function LandingPage() {
             one way to achieve this is by managing your HR and payroll in a
             single system and by integrating these functions.
           </p>
-          <div className="pt-2 pb-9 flex flex-row mt-4 md:pt-4">
-            <Link href={"/login"} className="md:pr-10 pr-9 md:static" passHref>
-              <Button label="Get Started" />
-            </Link>
-            <div className="xl:ml-36"></div>
-          </div>
+          {!isAuthenticated && (
+            <div className="pt-2 pb-9 flex flex-row mt-4 md:pt-4">
+              <Link
+                href={"/login"}
+                className="md:pr-10 pr-9 md:static"
+                passHref
+              >
+                <Button label="Get Started" />
+              </Link>
+              <div className="xl:ml-36"></div>
+            </div>
+          )}
         </div>
         <div>
           <Image
@@ -36,15 +46,16 @@ function LandingPage() {
             alt="/"
             width={400}
             height={500}
-            className="rounded border md:max-w-96 lg:max-w-lg  xl:max-w-2xl lg:pl-8 lg:border-none dark:border-neutral-700 dark:bg-neutral-800"
+            className="rounded border md:max-w-96 lg:max-w-lg  xl:max-w-2xl lg:pl-8 lg:border-none dark:border-neutral-700 dark:bg-neutral-800 mt-4 md:mt-0"
           />
         </div>
       </div>
 
-      <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
-
-      <div className="shadow-md">
-        <List />
+      <div className="mt-10">
+        <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
+        <div className="shadow-md">
+          <List />
+        </div>
       </div>
     </div>
   );
