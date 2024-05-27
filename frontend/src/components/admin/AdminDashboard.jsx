@@ -1,14 +1,13 @@
 'use client';
-// import AdminHome from './admin/AdminHome';
+import Sidebar from './Sidebar';
+import AdminHome from './AdminHome';
 import { userInfo } from '@/controllers/userAuth/userAuth';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import Sidebar from '../Sidebar';
-import AdminHome from './AdminHome';
 
 function AdminDashboard() {
- 
   // const router = useRouter();
+
   // useEffect(() => {
   //   if (typeof localStorage !== "undefined") {
   //     const token = localStorage.getItem("token");

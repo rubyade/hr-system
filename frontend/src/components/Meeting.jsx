@@ -2,7 +2,7 @@ import React from 'react';
 
 function Meeting() {
   return (
-    <div className='meeting bg-white rounded p-4 w-72 mb-8 shadow-md md:mr-4 md:w-3/6 md:h-72'>
+    <div className='meeting bg-white rounded p-4 w-72 mb-8 shadow-md md:mr-4 md:w-2/6 md:h-72'>
       <h1 className='font-dosis font-bold text-center '>MEETING SCHEDULE</h1>
       <hr />
       <div className='flex mt-4 justify-between'>
