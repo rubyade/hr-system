@@ -1,4 +1,4 @@
-import UserLeaveRecords from "@/components/userComponents/UserLeaveRecords";
+import UserLeaveRecords from '@/components/userComponents/UserLeaveRecords';
 
 function UserLeaveInfo() {
   return <UserLeaveRecords />;

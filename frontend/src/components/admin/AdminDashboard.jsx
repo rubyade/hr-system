@@ -1,6 +1,5 @@
 'use client';
-import Sidebar from './Sidebar';
-import AdminHome from './AdminHome';
+import AdminHome from '../AdminHome';
 import { userInfo } from '@/controllers/userAuth/userAuth';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';

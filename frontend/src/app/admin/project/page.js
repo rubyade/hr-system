@@ -6,7 +6,7 @@ export default function Projects() {
     <main>
       <Link
         href={'/admin/dashboard'}
-        className='mb-8 justify-start text-white pr-[560px] text-xs'
+        className='mb-8 justify-start text-gray-600 pr-[560px] text-xs'
       >
         Back to Dashboard
       </Link>
