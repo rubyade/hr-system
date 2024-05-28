@@ -18,23 +18,31 @@ import Link from 'next/link';
 const UserHome = () => {
   const menus = [
     { name: 'Dashboard', url: '/admin/dashboard', icon: MdOutlineDashboard },
-    { name: 'Employees', url: '/admin/users', icon: AiOutlineUser },
-    { name: 'Projects', url: '/admin/project', icon: FiMessageSquare },
+    { name: 'All Employees', url: '/admin/users', icon: AiOutlineUser },
+    { name: 'All Projects', url: '/admin/project', icon: FiMessageSquare },
     {
       name: 'Leave Records',
       url: '/admin/leaverecords',
       icon: FaCalendarAlt,
       margin: true,
     },
-    { name: 'Attendance', url: '/admin/workreport', icon: FaWpforms },
-    { name: 'Departments', url: '/admin/workrecords', icon: FaGripHorizontal },
+    {
+      name: 'Employee Work Reports',
+      url: '/admin/workreport',
+      icon: FaWpforms,
+    },
+    {
+      name: 'Employee Work Records',
+      url: '/admin/workrecords',
+      icon: FaGripHorizontal,
+    },
     {
       name: 'Settings',
-      url: '/',
+      url: '/admin/dashboard',
       icon: RiSettings4Line,
       margin: true,
     },
-    { name: 'Logout', url: '/admin/project', icon: FaPowerOff },
+    { name: 'Logout', url: '/admin/dashboard', icon: FaPowerOff },
   ];
   const [open, setOpen] = useState(true);
   return (

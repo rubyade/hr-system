@@ -1,11 +1,14 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useUsers } from '@/services/queries';
 import { Tooltip } from '@nextui-org/react';
 import axiosInstance from '@/config/axiosConfig';
 import Swal from 'sweetalert2';
 import { EditIcon, DeleteIcon } from '../general/icons';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { userInfo } from '@/controllers/userAuth/userAuth';
+import { Spinner } from '@nextui-org/react';
 
 const AllUsersRecords = () => {
   const router = useRouter();
@@ -33,10 +36,17 @@ const AllUsersRecords = () => {
   }, [router]);
 
   const { data, isLoading, error } = useUsers();
-  console.log(data);
+  data && console.log(data);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className='flex justify-center items-center text-6xl h-full'>
+        <Spinner
+          label='Please wait a moment while we get you the records'
+          color='warning'
+        />
+      </div>
+    );
   }
 
   if (error) {

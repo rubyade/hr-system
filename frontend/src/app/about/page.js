@@ -13,7 +13,7 @@ export default function About() {
       <div className='container flex flex-col justify-center items-center'>
         <Link
           href={'/'}
-          className='mb-8 justify-start text-white pr-[560px] text-xs'
+          className='mb-8 justify-start text-white pr-[560px] lg:pr-[764px] text-xs'
         >
           Home
         </Link>

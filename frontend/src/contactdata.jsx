@@ -14,7 +14,7 @@ export default [
     github: 'https://github.com/rubyade',
     email: 'rubyadeniregun@gmail.com',
     image:
-      'https://lh3.googleusercontent.com/a/ACg8ocJkKfiPDK7dAXqAr_KphKEUKwKp-3w61j3_1FxDkGcjQzAfN1BY=s192-c-rg-br100',
+      'https://avatars.githubusercontent.com/u/73884443?s=400&u=a5048ed85a2bb64b2b59f44932f3a27a76aab8b1&v=4',
   },
   {
     id: 3,

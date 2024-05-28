@@ -20,7 +20,7 @@ function GeneralButton(props) {
     <div>
       <button
         onClick={handleLogout}
-        className='hover:bg-purple-500 hover:text-white bg-white text-purple-500 rounded text-xs py-2 px-8'
+        className='hover:bg-purple-500 hover:text-white bg-white text-purple-500 rounded text-sm py-2 px-8'
       >
         {label}
       </button>
