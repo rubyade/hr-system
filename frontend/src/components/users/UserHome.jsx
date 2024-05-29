@@ -11,6 +11,7 @@ import {
   FaWpforms,
   FaGripHorizontal,
   FaPowerOff,
+  FaDashcube,
 } from 'react-icons/fa';
 import AdminHome from '../AdminHome';
 import Link from 'next/link';
@@ -29,7 +30,7 @@ const UserHome = () => {
     {
       name: 'Employee Work Reports',
       url: '/admin/workreport',
-      icon: FaWpforms,
+      icon: FaDashcube,
     },
     {
       name: 'Employee Work Records',
@@ -42,7 +43,7 @@ const UserHome = () => {
       icon: RiSettings4Line,
       margin: true,
     },
-    { name: 'Logout', url: '/admin/dashboard', icon: FaPowerOff },
+    { name: 'Register Employee', url: '/register', icon: FaWpforms },
   ];
   const [open, setOpen] = useState(true);
   return (

@@ -11,10 +11,10 @@ export default function Contact() {
   const [people, setPeople] = useState(contactdata);
   return (
     <main className='flex items-center justify-center bg-gradient-to-r from-red-300 to-purple-500'>
-      <div className='container flex-col h-[100vh] flex justify-center items-center'>
+      <div className='container flex-col flex justify-center items-center'>
         <Link
           href={'/'}
-          className='mb-8 justify-start text-white text-xs lg:pr-[764px] pr-[560px]'
+          className='mb-8 justify-start text-white text-xs lg:pr-[764px] md:pr-[560px]'
         >
           Home
         </Link>

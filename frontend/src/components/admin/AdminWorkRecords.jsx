@@ -40,7 +40,7 @@ const AdminWorkRecords = () => {
 
   if (isLoading) {
     return (
-      <div className='flex justify-center items-center text-6xl h-full'>
+      <div className='flex justify-center items-center text-6xl h-screen'>
         <Spinner label='Please Wait a Moment' color='warning' />
       </div>
     );

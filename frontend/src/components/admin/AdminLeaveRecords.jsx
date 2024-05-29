@@ -42,7 +42,7 @@ const AdminLeaveRecords = () => {
 
   if (isLoading) {
     return (
-      <div className='flex justify-center items-center text-6xl h-full'>
+      <div className='flex justify-center h-screen items-center text-6xl'>
         <Spinner label='Please Wait a Moment' color='warning' />
       </div>
     );

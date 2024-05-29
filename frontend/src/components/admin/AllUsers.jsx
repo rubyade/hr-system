@@ -40,7 +40,7 @@ const AllUsersRecords = () => {
 
   if (isLoading) {
     return (
-      <div className='flex justify-center items-center text-6xl h-full'>
+      <div className='flex justify-center items-center text-6xl h-screen'>
         <Spinner
           label='Please wait a moment while we get you the records'
           color='warning'

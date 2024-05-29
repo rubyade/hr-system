@@ -91,7 +91,7 @@ body {
   /* border: 2px solid red; */
   width: 90vw;
   max-width: var(--fixed-width);
-  margin: 5rem 0;
+  margin: 10rem 0;
   background: var(--white);
   border-radius: var(--borderRadius);
   padding: 1.5rem 2rem;

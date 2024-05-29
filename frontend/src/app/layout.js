@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
           <AppProvider>
             <SwrProviders>
               <Navbar />
-              <div className='w-screen h-screen'>{children}</div>
+              <div className='w-screen'>{children}</div>
             </SwrProviders>
           </AppProvider>
         </Providers>

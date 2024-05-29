@@ -37,7 +37,7 @@ const AdminWorkReport = () => {
 
   if (isLoading) {
     return (
-      <div className='flex justify-center items-center text-6xl h-full'>
+      <div className='flex justify-center items-center text-6xl h-screen'>
         <Spinner label='Loading...' color='warning' />
       </div>
     );
