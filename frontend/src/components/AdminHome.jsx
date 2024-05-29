@@ -5,16 +5,15 @@ import { FaRegBell } from 'react-icons/fa';
 import Image from 'next/image';
 import hrimage from '../../public/abdullah-ali-yQA11IaTA58-unsplash.jpg';
 import Card from '../components/admin/Card';
-// import Button from './Button';
 import { today, getLocalTimeZone } from '@internationalized/date';
 import 'react-calendar/dist/Calendar.css';
 import { FaCalendar } from 'react-icons/fa';
 import LineChart from '../components/admin/LineChart';
 import { useUsers } from '@/services/queries';
-import DashboardCalendar from './dashboardCalendar';
 import { User } from '@nextui-org/react';
 // import { Tooltip, Button } from '@nextui-org/react';
 import Button from './general/Button';
+import DashboardCalendar from './DashboardCalendar';
 
 const AdminHome = () => {
   const [userData, setUsersData] = useState([]);
