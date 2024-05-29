@@ -2,14 +2,14 @@
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import Button from '../components/general/GeneralButton';
+//import Button from '../components/general/GeneralButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faBusinessTime } from '@fortawesome/free-solid-svg-icons';
 import useToken from '@/controllers/userAuth/userToken';
 import { userInfo } from '@/controllers/userAuth/userAuth';
-import { CheckinButton } from './general/Button';
+import Button, { CheckinButton } from './general/Button';
 
 function Navbar() {
   const [clicked, setClicked] = useState(false);
